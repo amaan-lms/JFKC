@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   ChevronDown, 
   Menu, 
@@ -11,6 +12,12 @@ import {
 } from 'lucide-react';
 
 const Navbar = () => {
+  const location = useLocation();
+  const hasDarkHero =
+    location.pathname === '/' ||
+    location.pathname === '/portfolio' ||
+    location.pathname === '/services' ||
+    location.pathname === '/products';
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null); // 'training' | 'learning' | null
   const [scrolled, setScrolled] = useState(false);
@@ -26,14 +33,37 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const solid = scrolled || mobileMenuOpen;
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  const solid = !hasDarkHero || scrolled || mobileMenuOpen;
+  const isPortfolio = location.pathname === '/portfolio';
+  const isServices = location.pathname === '/services';
+  const isProducts = location.pathname === '/products';
+  const activeHash = location.hash;
 
   const linkBase = solid
     ? 'text-gray-600 hover:text-orange-500 hover:bg-gray-100'
     : 'text-white/90 hover:text-white hover:bg-white/10';
+  const linkActive = solid
+    ? 'text-orange-500 bg-orange-50'
+    : 'text-orange-400 bg-white/15';
   const dropdownActive = solid
     ? 'text-orange-500 bg-orange-50'
     : 'text-orange-400 bg-white/10';
+
+  const navClass = (active) =>
+    `px-4 py-2 text-sm font-semibold transition-colors rounded-full ${
+      active ? linkActive : linkBase
+    }`;
+  const mobileNavClass = (active) =>
+    `block px-4 py-3 rounded-2xl text-base font-semibold transition-colors ${
+      active
+        ? 'bg-orange-50 text-orange-500'
+        : 'text-gray-800 hover:bg-gray-50 hover:text-orange-500'
+    }`;
 
   return (
     <header
@@ -52,45 +82,48 @@ const Navbar = () => {
 
         <div className="relative z-10 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center gap-2.5">
+          <Link to="/" className="flex-shrink-0 flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-base">
               JF
             </div>
             <span
-              className={`text-base sm:text-lg font-extrabold tracking-tight transition-colors duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`text-base sm:text-lg font-bold tracking-tight transition-colors duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 solid ? 'text-gray-900' : 'text-white'
               }`}
             >
               Knowledge<span className="text-orange-500">Centre</span>
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center space-x-1">
             
             {/* Portfolio Link */}
-            <a 
-              href="#portfolio" 
-              className={`px-4 py-2 text-sm font-semibold transition-colors rounded-full ${linkBase}`}
+            <Link 
+              to="/portfolio" 
+              className={navClass(isPortfolio)}
+              aria-current={isPortfolio ? 'page' : undefined}
             >
               Portfolio
-            </a>
+            </Link>
 
             {/* Services Link */}
-            <a 
-              href="#services" 
-              className={`px-4 py-2 text-sm font-semibold transition-colors rounded-full ${linkBase}`}
+            <Link
+              to="/services"
+              className={navClass(isServices)}
+              aria-current={isServices ? 'page' : undefined}
             >
               Services
-            </a>
+            </Link>
 
             {/* Products Link */}
-            <a 
-              href="#products" 
-              className={`px-4 py-2 text-sm font-semibold transition-colors rounded-full ${linkBase}`}
+            <Link
+              to="/products"
+              className={navClass(isProducts)}
+              aria-current={isProducts ? 'page' : undefined}
             >
               Products
-            </a>
+            </Link>
 
             {/* Training Dropdown */}
             <div 
@@ -269,29 +302,32 @@ const Navbar = () => {
         <div className={`lg:hidden mx-auto mt-2 rounded-2xl border border-white/40 bg-white/80 shadow-md backdrop-blur-xl p-4 space-y-1 animate-in fade-in slide-in-from-top-2 ${
           solid ? 'max-w-5xl' : 'max-w-7xl'
         }`}>
-          <a
-            href="#portfolio"
+          <Link
+            to="/portfolio"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-4 py-3 rounded-2xl text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-orange-500 transition-colors"
+            className={mobileNavClass(isPortfolio)}
+            aria-current={isPortfolio ? 'page' : undefined}
           >
             Portfolio
-          </a>
+          </Link>
 
-          <a
-            href="#services"
+          <Link
+            to="/services"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-4 py-3 rounded-2xl text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-orange-500 transition-colors"
+            className={mobileNavClass(isServices)}
+            aria-current={isServices ? 'page' : undefined}
           >
             Services
-          </a>
+          </Link>
 
-          <a
-            href="#products"
+          <Link
+            to="/products"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-4 py-3 rounded-2xl text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-orange-500 transition-colors"
+            className={mobileNavClass(isProducts)}
+            aria-current={isProducts ? 'page' : undefined}
           >
             Products
-          </a>
+          </Link>
 
           {/* Mobile Training Dropdown */}
           <div>

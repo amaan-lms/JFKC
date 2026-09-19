@@ -1,29 +1,24 @@
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Hero from "./components/Home/Hero";
-import About from "./components/Home/About";
-import WhoWEAre from "./components/Home/WhoWEAre";
-import SetUsApart from "./components/Home/SetUsApart";
-import WhyChooseUs from "./components/Home/WhyChooseUs";
-import VissionMission from "./components/Home/VissionMission";
-import CTA from "./components/CTA";
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Portfolio from './pages/Portfolio';
+import Services from './pages/Services';
+import Products from './pages/Products';
 
 function App() {
-
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
-      <Hero />
-      <About />
-      <WhoWEAre />
-      <SetUsApart />
-      <WhyChooseUs />
-      <VissionMission />
-      <CTA />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/products" element={<Products />} />
+      </Routes>
       <Footer />
-    </>
-  )
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

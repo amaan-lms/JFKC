@@ -87,8 +87,81 @@ body {
   animation-play-state: paused;
 }
 
+@keyframes services-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.services-marquee__track {
+  animation: services-marquee 55s linear infinite;
+}
+
+.services-marquee__track--paused {
+  animation-play-state: paused;
+}
+
+.services-marquee__track--reverse {
+  animation-direction: reverse;
+}
+
+@keyframes services-spotlight-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services-spotlight-in {
+  animation: services-spotlight-in 0.45s ease-out both;
+}
+
+@keyframes services-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.services-progress {
+  animation: services-progress 4.5s linear both;
+}
+
+@keyframes products-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.products-marquee__track {
+  animation: products-marquee 55s linear infinite;
+}
+
+.products-marquee:hover .products-marquee__track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .set-apart-marquee__track {
+  .set-apart-marquee__track,
+  .services-marquee__track,
+  .products-marquee__track {
+    animation: none;
+  }
+
+  .services-spotlight-in,
+  .services-progress {
     animation: none;
   }
 }

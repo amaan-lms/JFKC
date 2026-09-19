@@ -105,14 +105,13 @@ const Footer = () => {
             <h4 className="text-lg font-bold text-white">General :</h4>
             <div className="mt-2 mb-5 h-0.5 w-14 bg-orange-500" />
 
-            <ul className="space-y-3 text-sm text-white/85">
+            <ul className="list-none space-y-3 text-sm text-white/85">
               {generalLinks.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="inline-flex items-center gap-2.5 transition-colors hover:text-orange-400"
+                    className="transition-colors hover:text-orange-400"
                   >
-                    <span className="h-1.5 w-1.5 shrink-0 bg-white" />
                     {link.label}
                   </a>
                 </li>
