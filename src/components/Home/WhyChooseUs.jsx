@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 const WhyChooseUs = () => {
@@ -31,13 +32,13 @@ const WhyChooseUs = () => {
               with your goals and vision.
             </p>
 
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="mt-8 inline-flex w-fit items-center gap-2 rounded-4xl bg-gray-900 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-orange-500"
             >
               Let&apos;s work together
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
 
           {/* Bottom feature cards */}

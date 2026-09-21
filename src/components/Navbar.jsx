@@ -15,9 +15,18 @@ const Navbar = () => {
   const location = useLocation();
   const hasDarkHero =
     location.pathname === '/' ||
+    location.pathname === '/about' ||
+    location.pathname === '/contact' ||
+    location.pathname === '/career' ||
+    location.pathname === '/privacy' ||
+    location.pathname === '/terms' ||
     location.pathname === '/portfolio' ||
     location.pathname === '/services' ||
-    location.pathname === '/products';
+    location.pathname === '/products' ||
+    location.pathname === '/training-modules' ||
+    location.pathname === '/training-delivery' ||
+    location.pathname === '/immersive-learning' ||
+    location.pathname === '/learning-technology';
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null); // 'training' | 'learning' | null
   const [scrolled, setScrolled] = useState(false);
@@ -39,9 +48,17 @@ const Navbar = () => {
   }, [location.pathname]);
 
   const solid = !hasDarkHero || scrolled || mobileMenuOpen;
+  const isAbout = location.pathname === '/about';
+  const isContact = location.pathname === '/contact';
   const isPortfolio = location.pathname === '/portfolio';
   const isServices = location.pathname === '/services';
   const isProducts = location.pathname === '/products';
+  const isTrainingModules = location.pathname === '/training-modules';
+  const isTrainingDelivery = location.pathname === '/training-delivery';
+  const isTraining = isTrainingModules || isTrainingDelivery;
+  const isImmersiveLearning = location.pathname === '/immersive-learning';
+  const isLearningTechnology = location.pathname === '/learning-technology';
+  const isLearning = isImmersiveLearning || isLearningTechnology;
   const activeHash = location.hash;
 
   const linkBase = solid
@@ -83,21 +100,28 @@ const Navbar = () => {
         <div className="relative z-10 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-base">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-500 font-[family-name:var(--font-serif)] text-base font-bold tracking-wide text-white">
               JF
             </div>
             <span
-              className={`text-base sm:text-lg font-bold tracking-tight transition-colors duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`text-base sm:text-lg font-bold uppercase tracking-tight transition-colors duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 solid ? 'text-gray-900' : 'text-white'
               }`}
             >
-              Knowledge<span className="text-orange-500">Centre</span>
+              Knowledge<span className="text-orange-500"> Centre</span>
             </span>
           </Link>
 
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center space-x-1">
-            
+            <Link
+              to="/about"
+              className={navClass(isAbout)}
+              aria-current={isAbout ? 'page' : undefined}
+            >
+              About Us
+            </Link>
+
             {/* Portfolio Link */}
             <Link 
               to="/portfolio" 
@@ -133,7 +157,7 @@ const Navbar = () => {
             >
               <button 
                 className={`flex items-center gap-1 px-4 py-2 text-sm font-semibold rounded-full transition-all ${
-                  activeDropdown === 'training' ? dropdownActive : linkBase
+                  activeDropdown === 'training' || isTraining ? dropdownActive : linkBase
                 }`}
               >
                 Training
@@ -146,35 +170,44 @@ const Navbar = () => {
                   <div className="bg-white rounded-3xl border border-gray-200 shadow-md overflow-hidden grid grid-cols-3 p-4 gap-4 animate-in fade-in slide-in-from-top-2 duration-200">
                     <div className="col-span-2 grid grid-cols-1 gap-1 p-1">
                       
-                      {/* Option 1: Training Delivery */}
-                      <a href="#training-delivery" className="flex items-start gap-3.5 p-3 rounded-2xl hover:bg-gray-50 transition-colors group">
-                        <div className="p-2.5 rounded-xl bg-orange-100 text-orange-600 group-hover:bg-orange-500 group-hover:text-white transition-colors">
-                          <GraduationCap className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-bold text-gray-900 group-hover:text-orange-500 transition-colors">
-                            Training Delivery
-                          </h4>
-                          <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">
-                            Seamless instructor-led and self-paced live sessions with personalized feedback.
-                          </p>
-                        </div>
-                      </a>
+                      
 
-                      {/* Option 2: Training Module */}
-                      <a href="#training-module" className="flex items-start gap-3.5 p-3 rounded-2xl hover:bg-gray-50 transition-colors group">
-                        <div className="p-2.5 rounded-xl bg-gray-100 text-gray-700 group-hover:bg-gray-900 group-hover:text-white transition-colors">
-                          <BookOpen className="w-5 h-5" />
+                      {/* Option 1: Training Module */}
+                      <Link
+                        to="/training-modules"
+                        onClick={() => setActiveDropdown(null)}
+                        className="group flex items-start gap-3.5 rounded-2xl p-3 transition-colors hover:bg-gray-50"
+                      >
+                        <div className="rounded-xl bg-gray-100 p-2.5 text-gray-700 transition-colors group-hover:bg-gray-900 group-hover:text-white">
+                          <BookOpen className="h-5 w-5" />
                         </div>
                         <div>
-                          <h4 className="text-sm font-bold text-gray-900 group-hover:text-orange-500 transition-colors">
-                            Training Module
+                          <h4 className="text-sm font-bold text-gray-900 transition-colors group-hover:text-orange-500">
+                            Training Modules
                           </h4>
-                          <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">
+                          <p className="mt-0.5 text-xs leading-relaxed text-gray-500">
                             Customizable course modules, structured learning paths, and interactive quizzes.
                           </p>
                         </div>
-                      </a>
+                      </Link>
+
+                      <Link
+                        to="/training-delivery"
+                        onClick={() => setActiveDropdown(null)}
+                        className="group flex items-start gap-3.5 rounded-2xl p-3 transition-colors hover:bg-gray-50"
+                      >
+                        <div className="rounded-xl bg-orange-100 p-2.5 text-orange-600 transition-colors group-hover:bg-orange-500 group-hover:text-white">
+                          <GraduationCap className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-gray-900 transition-colors group-hover:text-orange-500">
+                            Training Delivery
+                          </h4>
+                          <p className="mt-0.5 text-xs leading-relaxed text-gray-500">
+                            Seamless instructor-led and self-paced live sessions with personalized feedback.
+                          </p>
+                        </div>
+                      </Link>
                     </div>
 
                     {/* Highlight Banner Side */}
@@ -188,9 +221,9 @@ const Navbar = () => {
                           Boost workforce productivity with structured learning tracks.
                         </p>
                       </div>
-                      <a href="#explore-training" className="inline-flex items-center text-xs font-semibold text-orange-400 hover:text-orange-300 gap-1 mt-4">
+                      {/* <a href="#explore-training" className="inline-flex items-center text-xs font-semibold text-orange-400 hover:text-orange-300 gap-1 mt-4">
                         Explore Solutions <ArrowRight className="w-3.5 h-3.5" />
-                      </a>
+                      </a> */}
                     </div>
                   </div>
                 </div>
@@ -205,11 +238,11 @@ const Navbar = () => {
             >
               <button 
                 className={`flex items-center gap-1 px-4 py-2 text-sm font-semibold rounded-full transition-all ${
-                  activeDropdown === 'learning' ? dropdownActive : linkBase
+                  activeDropdown === 'learning' || isLearning ? dropdownActive : linkBase
                 }`}
               >
                 Learning
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'learning' ? 'rotate-180 text-orange-500' : solid ? 'text-gray-400' : 'text-white/50'}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'learning' || isLearning ? 'rotate-180 text-orange-500' : solid ? 'text-gray-400' : 'text-white/50'}`} />
               </button>
 
               {/* Learning Mega Menu */}
@@ -219,34 +252,42 @@ const Navbar = () => {
                     <div className="col-span-2 grid grid-cols-1 gap-1 p-1">
                       
                       {/* Option 1: Immersive Learning */}
-                      <a href="#immersive-learning" className="flex items-start gap-3.5 p-3 rounded-2xl hover:bg-gray-50 transition-colors group">
-                        <div className="p-2.5 rounded-xl bg-orange-100 text-orange-600 group-hover:bg-orange-500 group-hover:text-white transition-colors">
-                          <Sparkles className="w-5 h-5" />
+                      <Link
+                        to="/immersive-learning"
+                        onClick={() => setActiveDropdown(null)}
+                        className="group flex items-start gap-3.5 rounded-2xl p-3 transition-colors hover:bg-gray-50"
+                      >
+                        <div className="rounded-xl bg-orange-100 p-2.5 text-orange-600 transition-colors group-hover:bg-orange-500 group-hover:text-white">
+                          <Sparkles className="h-5 w-5" />
                         </div>
                         <div>
-                          <h4 className="text-sm font-bold text-gray-900 group-hover:text-orange-500 transition-colors">
+                          <h4 className="text-sm font-bold text-gray-900 transition-colors group-hover:text-orange-500">
                             Immersive Learning
                           </h4>
-                          <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">
+                          <p className="mt-0.5 text-xs leading-relaxed text-gray-500">
                             Engage learners through AR/VR experiences, simulations, and gamified content.
                           </p>
                         </div>
-                      </a>
+                      </Link>
 
                       {/* Option 2: Learning Technology */}
-                      <a href="#learning-technology" className="flex items-start gap-3.5 p-3 rounded-2xl hover:bg-gray-50 transition-colors group">
-                        <div className="p-2.5 rounded-xl bg-gray-100 text-gray-700 group-hover:bg-gray-900 group-hover:text-white transition-colors">
-                          <Cpu className="w-5 h-5" />
+                      <Link
+                        to="/learning-technology"
+                        onClick={() => setActiveDropdown(null)}
+                        className="group flex items-start gap-3.5 rounded-2xl p-3 transition-colors hover:bg-gray-50"
+                      >
+                        <div className="rounded-xl bg-gray-100 p-2.5 text-gray-700 transition-colors group-hover:bg-gray-900 group-hover:text-white">
+                          <Cpu className="h-5 w-5" />
                         </div>
                         <div>
-                          <h4 className="text-sm font-bold text-gray-900 group-hover:text-orange-500 transition-colors">
+                          <h4 className="text-sm font-bold text-gray-900 transition-colors group-hover:text-orange-500">
                             Learning Technology
                           </h4>
-                          <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">
+                          <p className="mt-0.5 text-xs leading-relaxed text-gray-500">
                             Next-gen AI analytics, LMS integration, and automated progress tracking.
                           </p>
                         </div>
-                      </a>
+                      </Link>
                     </div>
 
                     {/* Highlight Banner Side */}
@@ -260,9 +301,9 @@ const Navbar = () => {
                           Transform educational workflows with modern smart technology.
                         </p>
                       </div>
-                      <a href="#learn-tech" className="inline-flex items-center text-xs font-semibold text-orange-400 hover:text-orange-300 gap-1 mt-4">
+                      {/* <a href="#learn-tech" className="inline-flex items-center text-xs font-semibold text-orange-400 hover:text-orange-300 gap-1 mt-4">
                         Discover Tech <ArrowRight className="w-3.5 h-3.5" />
-                      </a>
+                      </a> */}
                     </div>
                   </div>
                 </div>
@@ -272,12 +313,12 @@ const Navbar = () => {
 
           {/* Action Button */}
           <div className="hidden lg:flex items-center">
-            <a 
-              href="#book-appointment" 
+            <Link
+              to="/contact"
               className="bg-orange-500 hover:bg-orange-600 text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-colors active:scale-95"
             >
-              Book an Appointment
-            </a>
+              Contact
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle Button */}
@@ -302,6 +343,15 @@ const Navbar = () => {
         <div className={`lg:hidden mx-auto mt-2 rounded-2xl border border-white/40 bg-white/80 shadow-md backdrop-blur-xl p-4 space-y-1 animate-in fade-in slide-in-from-top-2 ${
           solid ? 'max-w-5xl' : 'max-w-7xl'
         }`}>
+          <Link
+            to="/about"
+            onClick={() => setMobileMenuOpen(false)}
+            className={mobileNavClass(isAbout)}
+            aria-current={isAbout ? 'page' : undefined}
+          >
+            About Us
+          </Link>
+
           <Link
             to="/portfolio"
             onClick={() => setMobileMenuOpen(false)}
@@ -340,22 +390,22 @@ const Navbar = () => {
             </button>
             {mobileTrainingOpen && (
               <div className="pl-4 pr-2 py-2 space-y-1 bg-gray-50 rounded-2xl mt-1 border border-gray-100">
-                <a
-                  href="#training-delivery"
+                <Link
+                  to="/training-delivery"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 p-2.5 rounded-xl text-sm font-medium text-gray-700 hover:text-orange-500"
+                  className="flex items-center gap-3 rounded-xl p-2.5 text-sm font-medium text-gray-700 hover:text-orange-500"
                 >
-                  <GraduationCap className="w-4 h-4 text-orange-500" />
+                  <GraduationCap className="h-4 w-4 text-orange-500" />
                   Training Delivery
-                </a>
-                <a
-                  href="#training-module"
+                </Link>
+                <Link
+                  to="/training-modules"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 p-2.5 rounded-xl text-sm font-medium text-gray-700 hover:text-orange-500"
+                  className="flex items-center gap-3 rounded-xl p-2.5 text-sm font-medium text-gray-700 hover:text-orange-500"
                 >
-                  <BookOpen className="w-4 h-4 text-gray-700" />
-                  Training Module
-                </a>
+                  <BookOpen className="h-4 w-4 text-gray-700" />
+                  Training Modules
+                </Link>
               </div>
             )}
           </div>
@@ -371,35 +421,35 @@ const Navbar = () => {
             </button>
             {mobileLearningOpen && (
               <div className="pl-4 pr-2 py-2 space-y-1 bg-gray-50 rounded-2xl mt-1 border border-gray-100">
-                <a
-                  href="#immersive-learning"
+                <Link
+                  to="/immersive-learning"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 p-2.5 rounded-xl text-sm font-medium text-gray-700 hover:text-orange-500"
+                  className="flex items-center gap-3 rounded-xl p-2.5 text-sm font-medium text-gray-700 hover:text-orange-500"
                 >
-                  <Sparkles className="w-4 h-4 text-orange-500" />
+                  <Sparkles className="h-4 w-4 text-orange-500" />
                   Immersive Learning
-                </a>
-                <a
-                  href="#learning-technology"
+                </Link>
+                <Link
+                  to="/learning-technology"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 p-2.5 rounded-xl text-sm font-medium text-gray-700 hover:text-orange-500"
+                  className="flex items-center gap-3 rounded-xl p-2.5 text-sm font-medium text-gray-700 hover:text-orange-500"
                 >
-                  <Cpu className="w-4 h-4 text-gray-700" />
+                  <Cpu className="h-4 w-4 text-gray-700" />
                   Learning Technology
-                </a>
+                </Link>
               </div>
             )}
           </div>
 
           {/* Mobile Action Button */}
           <div className="pt-3 border-t border-gray-100 mt-2">
-            <a
-              href="#book-appointment"
+            <Link
+              to="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="block w-full text-center bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-full transition-colors"
             >
-              Book an Appointment
-            </a>
+              Contact
+            </Link>
           </div>
         </div>
       )}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import heroImg from '../../assets/bg3.png';
 
@@ -41,19 +42,19 @@ const Hero = () => {
             </p>
 
             <div className="hero-banner__rise hero-banner__rise--4 flex flex-wrap items-center gap-4">
-              <a
-                href="#about"
+              <Link
+                to="/about"
                 className="group inline-flex items-center gap-2 rounded-4xl bg-orange-500 px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-orange-400 sm:text-base"
               >
                 About Us
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                to="/contact"
                 className="inline-flex items-center rounded-4xl border border-white/35 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-orange-400 hover:bg-orange-500/15 sm:text-base"
               >
                 Contact Us
-              </a>
+              </Link>
             </div>
           </div>
         </div>

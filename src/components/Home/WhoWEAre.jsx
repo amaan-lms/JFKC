@@ -1,62 +1,129 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import whoWeAreImg from '../../assets/who_we_are.png';
+import { Link } from 'react-router-dom';
+import { ArrowRight, BookOpen, MonitorPlay, Sparkles } from 'lucide-react';
+
+const highlights = [
+  { label: 'E-Learning Modules', Icon: BookOpen },
+  { label: 'LMS Platform', Icon: MonitorPlay },
+  { label: 'Immersive Design', Icon: Sparkles },
+];
 
 const WhoWeAre = () => {
   return (
     <section
       id="who-we-are"
-      className="relative overflow-hidden bg-gradient-to-b from-white via-orange-50 to-orange-100 py-16 font-[family-name:var(--font-display)] text-gray-800 sm:py-20"
+      className="relative overflow-hidden bg-gradient-to-b from-slate-100 via-orange-50 to-slate-50 py-16 font-[family-name:var(--font-display)] text-gray-800 sm:py-20 lg:py-24"
     >
+      {/* Soft atmosphere */}
+      <div
+        className="pointer-events-none absolute -left-24 top-20 h-72 w-72 rounded-full bg-orange-200/40 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -right-16 bottom-10 h-80 w-80 rounded-full bg-slate-200/60 blur-3xl"
+        aria-hidden="true"
+      />
+
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Featured image — slightly cropped from bottom */}
-        <div className="w-full overflow-hidden rounded-[1.75rem] sm:rounded-[2rem]">
-          <img
-            src={whoWeAreImg}
-            alt="Who We Are — JFKC team collaborating"
-            className="block h-auto w-full max-w-full object-cover object-top mb-[-6%] sm:mb-[-7%]"
-          />
+        {/* Header row */}
+        <div className="mb-10 flex flex-col gap-4 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <div className="mb-3 flex items-center gap-3">
+              <span className="h-px w-10 bg-orange-400/70" />
+              <p className="text-xs font-bold tracking-[0.2em] text-orange-500 uppercase">
+                Who We Are
+              </p>
+            </div>
+            <h2 className="max-w-xl text-3xl  tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+              The people and craft behind{' '}
+              <span className="text-orange-500">smarter learning</span>
+            </h2>
+          </div>
+          <p className="max-w-sm text-sm leading-relaxed text-slate-600 sm:text-base">
+            Content developers, instructional designers, and multimedia experts —
+            building learning that sticks.
+          </p>
         </div>
 
-        {/* Content + CTA */}
-        <div className="mt-10 grid grid-cols-1 gap-10 lg:mt-12 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-8">
-          
-            <p className="mt-5 max-w-2xl text-base font-semibold leading-relaxed text-gray-900 sm:text-lg">
-              JF Knowledge Centre (JFKC) develops high quality E-Learning Modules and provides a best-in-class
-              Learning Management System (LMS).
-            </p>
+        {/* Unique stage: image + overlapping story panel */}
+        <div className="relative grid items-stretch gap-6 lg:grid-cols-12 lg:gap-0">
+          {/* Image column */}
+          <div className="relative lg:col-span-7 lg:pr-8">
+            <div
+              className="pointer-events-none absolute -bottom-4 -left-4 h-full w-full rounded-[2rem] bg-orange-200/50 sm:-bottom-5 sm:-left-5"
+              aria-hidden="true"
+            />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] ring-1 ring-orange-200/60 sm:aspect-[5/4]">
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop"
+                alt="JFKC team collaborating on e-learning and LMS solutions"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-tr from-slate-900/40 via-transparent to-transparent"
+                aria-hidden="true"
+              />
 
-            <div className="mt-5 grid grid-cols-1 gap-4 text-sm leading-relaxed text-gray-600 sm:grid-cols-2 sm:gap-6 sm:text-base">
-              <p>
-                Our team of content developers, instructional designers, and multimedia experts creates dynamic,
-                interactive learning materials tailored to every learner.
-              </p>
-              <p>
-                Using the latest technology and teaching practices, we design modules, videos, and gamified quizzes
-                that keep learners engaged and motivated to succeed.
-              </p>
+              {/* Floating brand chip on image */}
+              <div className="absolute bottom-5 left-5 rounded-2xl bg-white/95 px-4 py-3 backdrop-blur-sm sm:bottom-6 sm:left-6">
+                <p className="text-xs font-bold tracking-[0.16em] text-orange-500 uppercase">
+                  Since day one
+                </p>
+                <p className="mt-0.5 text-sm font-semibold text-slate-900">
+                  Knowledge that performs
+                </p>
+              </div>
             </div>
           </div>
 
-          <aside className="flex flex-col justify-start lg:col-span-4 lg:pl-4">
-            <p className="text-3xl font-bold tracking-[-0.03em] text-orange-500 uppercase sm:text-4xl">
-              JFKC
-            </p>
-            <p className="mt-1 text-sm font-medium text-gray-800 sm:text-base">
-              E-Learning | LMS Solutions
-            </p>
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-gray-600">
-              Innovative e-learning that resonates with diverse audiences and drives real outcomes.
-            </p>
-            <a
-              href="#contact"
-              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-orange-500 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-orange-400"
-            >
-              Let&apos;s Collaborate
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </aside>
+          {/* Story panel — overlaps on desktop */}
+          <div className="relative z-10 flex lg:col-span-5 lg:-ml-10 lg:items-center">
+            <div className="w-full rounded-[1.75rem] bg-white p-6 ring-1 ring-slate-200/80 sm:p-8 lg:p-9">
+              <p className="text-4xl font-bold tracking-[-0.04em] text-orange-500 sm:text-5xl">
+                JFKC
+              </p>
+              <p className="mt-1 text-sm font-semibold text-slate-800">
+                E-Learning · LMS Solutions
+              </p>
+
+              <p className="mt-6 text-base font-semibold leading-relaxed text-slate-900 sm:text-lg">
+                JF Knowledge Centre develops high quality E-Learning Modules and a
+                best-in-class Learning Management System (LMS).
+              </p>
+
+              <div className="mt-5 space-y-3 text-sm leading-relaxed text-slate-600 sm:text-[0.95rem]">
+                <p>
+                  Our team creates dynamic, interactive materials tailored to every
+                  learner — modules, videos, and gamified quizzes that keep people
+                  engaged.
+                </p>
+                <p>
+                  We blend the latest technology with proven teaching practices so
+                  learning feels modern, motivating, and measurable.
+                </p>
+              </div>
+
+              <div className="mt-7 flex flex-wrap gap-2">
+                {highlights.map(({ label, Icon }) => (
+                  <span
+                    key={label}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-orange-50 px-3 py-1.5 text-xs font-semibold text-orange-700 ring-1 ring-orange-200/80"
+                  >
+                    <Icon className="h-3.5 w-3.5" />
+                    {label}
+                  </span>
+                ))}
+              </div>
+
+              <Link
+                to="/contact"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-orange-500 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-orange-400"
+              >
+                Let&apos;s Collaborate
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>

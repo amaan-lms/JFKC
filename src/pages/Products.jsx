@@ -154,7 +154,11 @@ const Products = () => {
       </section>
 
       {/* Products marquee */}
-      <section className="relative overflow-hidden bg-white py-16 sm:py-20 lg:py-24">
+      <section className="relative overflow-hidden bg-gradient-to-b from-slate-100 via-orange-50 to-slate-100 py-16 sm:py-20 lg:py-24">
+        <div
+          className="pointer-events-none absolute left-1/2 top-16 h-64 w-64 -translate-x-1/2 rounded-full bg-orange-200/35 blur-3xl"
+          aria-hidden="true"
+        />
         <div className="relative z-10 mx-auto mb-8 max-w-7xl px-4 text-center sm:mb-10 sm:px-6 lg:px-8">
           <div className="mb-3 flex items-center justify-center gap-3">
             <span className="h-px w-10 bg-orange-400/60" />
@@ -174,7 +178,7 @@ const Products = () => {
               return (
                 <div
                   key={item.name}
-                  className="inline-flex shrink-0 items-center gap-1 rounded-full border border-orange-200/80 bg-white px-1.5 py-0.5 text-[10px] font-semibold text-slate-700 sm:px-2 sm:py-1 sm:text-[11px]"
+                  className="inline-flex shrink-0 items-center gap-1 rounded-full border border-orange-200/80 bg-white/90 px-1.5 py-0.5 text-[10px] font-semibold text-slate-700 sm:px-2 sm:py-1 sm:text-[11px]"
                 >
                   <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full bg-orange-500 text-[7px] font-bold text-white sm:h-4 sm:w-4 sm:text-[8px]">
                     {index + 1}
@@ -188,8 +192,8 @@ const Products = () => {
         </div>
 
         <div className="products-marquee relative z-10 w-full overflow-hidden">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent sm:w-20" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent sm:w-20" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-slate-100 to-transparent sm:w-20" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-slate-100 to-transparent sm:w-20" />
 
           <div className="products-marquee__track flex w-max gap-5 px-4 sm:gap-6 sm:px-6">
             {loop.map((item, index) => (

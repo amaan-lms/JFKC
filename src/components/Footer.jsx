@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import logo from '../assets/logo.jpeg';
 
 const generalLinks = [
-  { label: 'Career', href: '#career' },
-  { label: 'Collaboration', href: '#collaboration' },
-  { label: 'Privacy Policy', href: '#privacy' },
-  { label: 'Terms & Conditions', href: '#terms' },
+  { label: 'Career', to: '/career' },
+  { label: 'Collaboration', to: '/contact' },
+  { label: 'Privacy Policy', to: '/privacy' },
+  { label: 'Terms & Conditions', to: '/terms' },
 ];
 
 const socialLinks = [
@@ -52,12 +53,10 @@ const Footer = () => {
 
             <p className="text-base text-white/90">Your Reliable Knowledge Partner</p>
 
-            <a
-              href="#who-we-are"
-              className="inline-flex items-center justify-center rounded-md bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
-            >
-              About us
-            </a>
+            <p className="max-w-xs text-sm leading-relaxed text-white/70">
+              At JF Knowledge Centre, we empower enterprises in their digital
+              transformation journey through the transformative power of knowledge.
+            </p>
           </div>
 
           {/* Official Info */}
@@ -108,12 +107,21 @@ const Footer = () => {
             <ul className="list-none space-y-3 text-sm text-white/85">
               {generalLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="transition-colors hover:text-orange-400"
-                  >
-                    {link.label}
-                  </a>
+                  {link.to ? (
+                    <Link
+                      to={link.to}
+                      className="transition-colors hover:text-orange-400"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="transition-colors hover:text-orange-400"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
