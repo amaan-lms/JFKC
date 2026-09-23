@@ -3,40 +3,32 @@ import React from 'react';
 const aboutItems = [
   {
     id: 'who-we-are',
-    title: 'Who We Are',
+    title: 'Built for Learning',
     content:
       'JF Knowledge Centre develops high-quality E-Learning modules and best-in-class Learning Management Systems.',
     image:
       'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=900&auto=format&fit=crop',
-    height: 'h-[400px] lg:h-[420px]',
+    height: 'h-[300px] lg:h-[340px]',
   },
   {
     id: 'what-sets-us-apart',
-    title: 'What Sets Us Apart',
+    title: 'Learner-First Edge',
     content:
       'We transform learning for our partners — driving success with innovative, learner-first approaches.',
     image:
       'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop',
-    height: 'h-[300px] lg:h-[340px]',
+    height:'h-[380px] lg:h-[420px]',
   },
   {
     id: 'why-choose-us',
-    title: 'Why Choose Us',
+    title: 'Impact That Lasts',
     content:
       'Empower your e-learning journey on digital platforms with tailored modules built for real impact.',
     image:
       'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=900&auto=format&fit=crop',
     height: 'h-[300px] lg:h-[340px]',
   },
-  {
-    id: 'vision-mission-values',
-    title: 'Vision & Values',
-    content:
-      'Our vision drives us forward, our mission guides our actions, and our values keep us grounded in purpose.',
-    image:
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=900&auto=format&fit=crop',
-    height: 'h-[400px] lg:h-[420px]',
-  },
+ 
 ];
 
 const About = () => {
@@ -49,7 +41,7 @@ const About = () => {
             Why <span className="text-orange-500">JFKC</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-gray-500 sm:text-lg">
-            Four pillars that define how we design learning experiences for modern teams.
+            Three pillars that define how we design learning experiences for modern teams.
           </p>
         </div>
 

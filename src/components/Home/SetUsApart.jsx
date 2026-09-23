@@ -1,103 +1,89 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
+import { industries } from '../../data/industries';
 
-const sectors = [
-  {
-    name: 'BFSI & Fintech',
-    desc: 'Secure, compliant learning for banking and finance teams.',
-    src: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=700&auto=format&fit=crop',
-  },
-  {
-    name: 'Retail & FMCG',
-    desc: 'Fast, engaging training for store and brand teams.',
-    src: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?q=80&w=700&auto=format&fit=crop',
-  },
-  {
-    name: 'Healthcare & Pharma',
-    desc: 'Precision modules for clinical and pharma workflows.',
-    src: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?q=80&w=700&auto=format&fit=crop',
-  },
-  {
-    name: 'Aviation & Airlines',
-    desc: 'Safety-first learning for air and ground operations.',
-    src: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=700&auto=format&fit=crop',
-  },
-  {
-    name: 'Automobiles & Manufacturing',
-    desc: 'Hands-on digital learning for plant and product teams.',
-    src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=700&auto=format&fit=crop',
-  },
-  {
-    name: 'Oil & Gas',
-    desc: 'Field-ready training for energy and operations crews.',
-    src: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=700&auto=format&fit=crop',
-  },
-  {
-    name: 'IT & Business Intelligence',
-    desc: 'Upskilling paths for tech and data-driven teams.',
-    src: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=700&auto=format&fit=crop',
-  },
-  {
-    name: 'Universities & Edtech',
-    desc: 'Adaptive modules for campuses and learning platforms.',
-    src: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=700&auto=format&fit=crop',
-  },
-];
+const IndustryCard = ({ industry }) => (
+  <Link
+    to={`/portfolio/${industry.slug}`}
+    className="group relative flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-orange-100/80 shadow-[0_8px_28px_-12px_rgba(249,115,22,0.25)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_40px_-16px_rgba(249,115,22,0.35)] hover:ring-orange-200"
+  >
+    <div className="relative aspect-[5/4] overflow-hidden">
+      <img
+        src={industry.image}
+        alt={industry.name}
+        className="h-full w-full object-cover transition-transform duration-600 ease-out group-hover:scale-105"
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"
+        aria-hidden="true"
+      />
 
-const SectorCard = ({ sector }) => (
-  <div className="group relative w-[160px] shrink-0 sm:w-[180px] md:w-[200px]">
-    <div className="overflow-hidden rounded-md border-[5px] border-white bg-white shadow-[0_12px_30px_rgba(0,0,0,0.14)] sm:border-[6px]">
-      <div className="relative aspect-[3/4] overflow-hidden">
-        <img
-          src={sector.src}
-          alt={sector.name}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/45 to-transparent p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:p-4">
-          <p className="text-sm font-bold text-white sm:text-base">{sector.name}</p>
-          <p className="mt-1 text-xs leading-relaxed text-white/80">{sector.desc}</p>
-        </div>
+      {/* Default title on image */}
+      <div className="absolute inset-x-0 bottom-0 p-3.5 transition-all duration-300 group-hover:opacity-0 sm:p-4">
+        <p className="text-sm font-bold leading-snug text-white sm:text-[0.95rem]">
+          {industry.name}
+        </p>
+      </div>
+
+      {/* Hover content */}
+      <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-orange-600/95 via-orange-500/80 to-orange-400/20 p-3.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:p-4">
+        <p className="text-sm font-bold leading-snug text-white sm:text-[0.95rem]">
+          {industry.name}
+        </p>
+        <p className="mt-1.5 line-clamp-3 text-xs leading-relaxed text-white/90">
+          {industry.short}
+        </p>
+        <span className="mt-2.5 inline-flex items-center gap-1 text-xs font-semibold text-white">
+          View sample
+          <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </span>
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 const WhatSetsUsApart = () => {
-  const loop = [...sectors, ...sectors];
+  const topRow = industries.slice(0, 5);
+  const bottomRow = industries.slice(5, 10);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-orange-50 to-orange-100 py-20 font-[family-name:var(--font-display)] text-gray-800 sm:py-24">
-      <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-        <p className="text-sm font-medium tracking-wide text-gray-500">What Set Us Apart?</p>
+    <section className="relative overflow-hidden bg-orange-100 py-16 font-[family-name:var(--font-display)] text-gray-800 sm:py-20 lg:py-24">
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(249,115,22,0.08),transparent_55%)]"
+        aria-hidden="true"
+      />
 
-        <h2 className="mx-auto mt-4 max-w-3xl text-3xl leading-tight font-bold tracking-[-0.03em] text-gray-900 sm:text-4xl lg:text-[2.75rem]">
-          Driving Learning Success with{' '}
-          <span className="text-orange-500">Innovative</span> Approaches
-        </h2>
-      </div>
-
-      {/* Auto-scroll gallery */}
-      <div className="set-apart-marquee relative mt-12 w-full overflow-hidden sm:mt-14">
-        <div className="set-apart-marquee__track flex w-max gap-4 px-4 sm:gap-5">
-          {loop.map((sector, index) => (
-            <SectorCard key={`${sector.name}-${index}`} sector={sector} />
-          ))}
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <span className="h-px w-10 bg-orange-200 sm:w-14" />
+            <p className="text-xs font-bold tracking-[0.2em] text-orange-500 uppercase">
+              Our Portfolio &amp; Samples
+            </p>
+            <span className="h-px w-10 bg-orange-200 sm:w-14" />
+          </div>
+          <h2 className="text-3xl font-bold tracking-[-0.03em] text-slate-900 sm:text-4xl lg:text-[2.75rem]">
+            We Shape Learning Across{' '}
+            <span className="text-orange-500">Industries</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-500 sm:text-base">
+            Explore industry samples — hover for a quick look, click for full details and video.
+          </p>
         </div>
-      </div>
 
-      {/* Short copy */}
-      <div className="relative mx-auto mt-12 max-w-2xl space-y-3 px-4 text-center text-sm leading-relaxed text-gray-600 sm:mt-14 sm:px-6 sm:text-base">
-        <p>
-          JFKC is dedicated to transforming learning for its partners — driving success with innovative approaches.
-        </p>
-        <p>
-          Our expertise spans{' '}
-          <span className="font-semibold text-gray-900">
-            BFSI & Fintech, Retail & FMCG, Healthcare & Pharma, Aviation & Airlines, Automobiles & Manufacturing, Oil
-            & Gas, IT & Business Intelligence, and Universities & Edtech
-          </span>
-          . With a decade of experience in design and digital solutions, we deliver engaging, adaptable knowledge
-          modules for businesses and institutions.
-        </p>
+        <div className="mt-12 space-y-4 sm:mt-14 sm:space-y-5">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-5">
+            {topRow.map((industry) => (
+              <IndustryCard key={industry.slug} industry={industry} />
+            ))}
+          </div>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-5">
+            {bottomRow.map((industry) => (
+              <IndustryCard key={industry.slug} industry={industry} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

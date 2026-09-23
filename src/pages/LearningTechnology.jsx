@@ -19,8 +19,10 @@ const topics = [
     Icon: Compass,
   },
   {
-    name: 'LMS Expertise',
-    text: 'We recommend and configure LMS platforms to match branding, roles, and reporting needs. Courses and assessments are uploaded, and administrators get hands-on training for enrollment, delivery, and tracking.',
+    name: 'LMS Platform',
+    text: 'Athena is our AI-powered Learning Management System — built to deliver courses, track progress, and manage training at scale. Explore branding, roles, assessments, and reporting designed for modern learning teams.',
+    link: 'https://lmsathena.com/',
+    linkLabel: 'Visit Athena LMS',
     image:
       'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
     Icon: MonitorPlay,
@@ -137,6 +139,17 @@ const LearningTechnology = () => {
                   <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
                     {current.text}
                   </p>
+                  {current.link && (
+                    <a
+                      href={current.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-orange-300 transition-colors hover:text-orange-200"
+                    >
+                      {current.linkLabel || current.link}
+                      <span aria-hidden="true">→</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

@@ -6,19 +6,25 @@ const pillars = [
     title: 'Vision',
     icon: Eye,
     text: 'We strive to transform the learning landscape in this dynamic era — making knowledge and education universally accessible to all.',
+    tone: 'orange',
     large: false,
+    side: 'left',
   },
   {
     title: 'Values',
     icon: Heart,
     text: 'Our unwavering commitment to keeping promises forms the foundation of lasting relationships built on trust, discipline, and integrity.',
+    tone: 'slate',
     large: true,
+    side: 'center',
   },
   {
     title: 'Mission',
     icon: Target,
     text: 'Our mission is to become the go-to provider of accessible, impactful e-learning solutions tailored to meet evolving needs.',
+    tone: 'orange',
     large: false,
+    side: 'right',
   },
 ];
 
@@ -43,21 +49,33 @@ const VisionMissionValues = () => {
             purpose.
           </p>
         </div>
+      </div>
 
-        <div className="relative mt-12 sm:mt-14">
-          <div className="grid grid-cols-1 items-end gap-6 md:grid-cols-3 md:gap-5 lg:gap-8">
-            {pillars.map(({ title, icon: Icon, text, large }, index) => (
+      <div className="relative mt-12 w-full sm:mt-14">
+        <div className="grid grid-cols-1 items-end gap-6 md:grid-cols-3 md:gap-5 lg:gap-8">
+          {pillars.map(({ title, icon: Icon, text, tone, large, side }, index) => {
+            const isOrange = tone === 'orange';
+
+            return (
               <article
                 key={title}
-                className={`relative flex flex-col rounded-3xl shadow-sm ${
+                className={`relative flex flex-col text-white shadow-sm ${
+                  isOrange ? 'bg-orange-500' : 'z-10 bg-slate-900'
+                } ${
                   large
-                    ? 'z-10 bg-orange-500 p-8 text-white sm:p-10 md:min-h-[340px] lg:min-h-[360px]'
-                    : 'border border-orange-100 bg-orange-50 p-7 text-gray-900 sm:p-8 md:min-h-[280px]'
+                    ? 'p-8 sm:p-10 md:min-h-[340px] md:rounded-3xl lg:min-h-[360px]'
+                    : `p-7 sm:p-8 md:min-h-[280px] ${
+                        side === 'left'
+                          ? 'rounded-3xl md:rounded-l-none md:rounded-r-3xl'
+                          : side === 'right'
+                            ? 'rounded-3xl md:rounded-r-none md:rounded-l-3xl'
+                            : 'rounded-3xl'
+                      }`
                 }`}
               >
                 <div
                   className={`mb-5 flex h-12 w-12 items-center justify-center rounded-2xl ${
-                    large ? 'bg-white/20 text-white' : 'bg-orange-500/15 text-orange-600'
+                    isOrange ? 'bg-white/20 text-white' : 'bg-orange-500/20 text-orange-400'
                   }`}
                 >
                   <Icon className="h-6 w-6" strokeWidth={1.75} />
@@ -66,22 +84,18 @@ const VisionMissionValues = () => {
                 <div className="mb-3 flex items-center gap-2">
                   <span
                     className={`text-[11px] font-bold tracking-widest uppercase ${
-                      large ? 'text-white/70' : 'text-orange-500'
+                      isOrange ? 'text-white/70' : 'text-orange-400'
                     }`}
                   >
                     0{index + 1}
                   </span>
-                  <h3 className={`text-xl font-bold tracking-tight ${large ? 'text-white' : 'text-gray-900'}`}>
-                    {title}
-                  </h3>
+                  <h3 className="text-xl font-bold tracking-tight text-white">{title}</h3>
                 </div>
 
-                <p className={`text-sm leading-relaxed ${large ? 'text-white/90' : 'text-gray-600'}`}>
-                  {text}
-                </p>
+                <p className="text-sm leading-relaxed text-white/90">{text}</p>
               </article>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -72,6 +72,73 @@ body {
 
 @keyframes set-apart-marquee {
   from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes set-apart-marquee-reverse {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.set-apart-marquee {
+  height: 520px;
+  mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+}
+
+@media (min-width: 640px) {
+  .set-apart-marquee {
+    height: 560px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .set-apart-marquee {
+    height: 600px;
+  }
+}
+
+.set-apart-marquee__track {
+  animation: set-apart-marquee 35s linear infinite;
+}
+
+.set-apart-marquee__track--reverse {
+  animation: set-apart-marquee-reverse 35s linear infinite;
+}
+
+.set-apart-marquee:hover .set-apart-marquee__track {
+  animation-play-state: paused;
+}
+
+.industry-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(251 146 60) rgb(226 232 240);
+}
+
+.industry-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.industry-scroll::-webkit-scrollbar-track {
+  background: rgb(226 232 240);
+  border-radius: 999px;
+}
+
+.industry-scroll::-webkit-scrollbar-thumb {
+  background: rgb(251 146 60);
+  border-radius: 999px;
+}
+
+@keyframes industry-marquee {
+  from {
     transform: translateX(0);
   }
   to {
@@ -79,11 +146,17 @@ body {
   }
 }
 
-.set-apart-marquee__track {
-  animation: set-apart-marquee 40s linear infinite;
+.industry-marquee {
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
 }
 
-.set-apart-marquee:hover .set-apart-marquee__track {
+.industry-marquee__track {
+  animation: industry-marquee 45s linear infinite;
+  width: max-content;
+}
+
+.industry-marquee:hover .industry-marquee__track {
   animation-play-state: paused;
 }
 
@@ -155,8 +228,10 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .set-apart-marquee__track,
+  .set-apart-marquee__track--reverse,
   .services-marquee__track,
-  .products-marquee__track {
+  .products-marquee__track,
+  .industry-marquee__track {
     animation: none;
   }
 

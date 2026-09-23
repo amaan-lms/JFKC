@@ -80,12 +80,9 @@ const About = () => {
                 tailored to empower learners worldwide.
               </p>
               <p>
-                Our experienced team of content developers, instructional designers and
-                multimedia experts specializes in creating dynamic, immersive materials
-                tailored to meet the unique needs of our corporate partners seeking to
-                train their workforce, an educational institution looking for curriculum
-                development, or entrepreneurs with a vision to create the legacy of their
-                expertise.
+                Our team of content developers, instructional designers, and multimedia
+                experts builds immersive materials for corporate partners, institutions,
+                and entrepreneurs.
               </p>
               <p>
                 We leverage the latest technology and pedagogical best practices to design

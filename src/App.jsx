@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Portfolio from './pages/Portfolio';
+import IndustryDetail from './pages/IndustryDetail';
 import Services from './pages/Services';
 import Products from './pages/Products';
 import TrainingModules from './pages/TrainingModules';
@@ -27,6 +28,7 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/portfolio/:slug" element={<IndustryDetail />} />
         <Route path="/services" element={<Services />} />
         <Route path="/products" element={<Products />} />
         <Route path="/training-modules" element={<TrainingModules />} />

@@ -21,6 +21,7 @@ const Navbar = () => {
     location.pathname === '/privacy' ||
     location.pathname === '/terms' ||
     location.pathname === '/portfolio' ||
+    location.pathname.startsWith('/portfolio/') ||
     location.pathname === '/services' ||
     location.pathname === '/products' ||
     location.pathname === '/training-modules' ||
@@ -123,13 +124,13 @@ const Navbar = () => {
             </Link>
 
             {/* Portfolio Link */}
-            <Link 
+            {/* <Link 
               to="/portfolio" 
               className={navClass(isPortfolio)}
               aria-current={isPortfolio ? 'page' : undefined}
             >
               Portfolio
-            </Link>
+            </Link> */}
 
             {/* Services Link */}
             <Link
@@ -352,14 +353,14 @@ const Navbar = () => {
             About Us
           </Link>
 
-          <Link
+          {/* <Link
             to="/portfolio"
             onClick={() => setMobileMenuOpen(false)}
             className={mobileNavClass(isPortfolio)}
             aria-current={isPortfolio ? 'page' : undefined}
           >
             Portfolio
-          </Link>
+          </Link> */}
 
           <Link
             to="/services"

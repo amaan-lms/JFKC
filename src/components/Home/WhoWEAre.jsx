@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen, MonitorPlay, Sparkles } from 'lucide-react';
 
 const highlights = [
   { label: 'E-Learning Modules', Icon: BookOpen },
-  { label: 'LMS Platform', Icon: MonitorPlay },
+  { label: 'Athena LMS', Icon: MonitorPlay },
   { label: 'Immersive Design', Icon: Sparkles },
 ];
 
@@ -83,25 +83,27 @@ const WhoWeAre = () => {
                 JFKC
               </p>
               <p className="mt-1 text-sm font-semibold text-slate-800">
-                E-Learning · LMS Solutions
+                E-Learning · Athena LMS
               </p>
 
               <p className="mt-6 text-base font-semibold leading-relaxed text-slate-900 sm:text-lg">
-                JF Knowledge Centre develops high quality E-Learning Modules and a
-                best-in-class Learning Management System (LMS).
+                We build high-quality e-learning modules and power them with{' '}
+                <span className="text-orange-500">Athena</span> — our AI-powered LMS.
               </p>
 
-              <div className="mt-5 space-y-3 text-sm leading-relaxed text-slate-600 sm:text-[0.95rem]">
-                <p>
-                  Our team creates dynamic, interactive materials tailored to every
-                  learner — modules, videos, and gamified quizzes that keep people
-                  engaged.
-                </p>
-                <p>
-                  We blend the latest technology with proven teaching practices so
-                  learning feels modern, motivating, and measurable.
-                </p>
-              </div>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-[0.95rem]">
+                Athena helps teams deliver courses, track progress, and manage training at
+                scale. Explore it at{' '}
+                <a
+                  href="https://lmsathena.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-orange-500 underline-offset-2 transition-colors hover:text-orange-600 hover:underline"
+                >
+                  lmsathena.com
+                </a>
+                .
+              </p>
 
               <div className="mt-7 flex flex-wrap gap-2">
                 {highlights.map(({ label, Icon }) => (
@@ -115,13 +117,24 @@ const WhoWeAre = () => {
                 ))}
               </div>
 
-              <Link
-                to="/contact"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-orange-500 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-orange-400"
-              >
-                Let&apos;s Collaborate
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-orange-400"
+                >
+                  Let&apos;s Collaborate
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a
+                  href="https://lmsathena.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-6 py-3.5 text-sm font-semibold text-orange-600 transition-colors hover:bg-orange-100"
+                >
+                  Visit Athena LMS
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

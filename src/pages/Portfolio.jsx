@@ -1,65 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight, Play, X } from 'lucide-react';
 import CTA from '../components/CTA';
-
-const industries = [
-  {
-    name: 'BFSI & Fintech',
-    image:
-      'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=900&auto=format&fit=crop',
-    text: 'JFKC is a transformative force developing courses on compliance, product & risk, digital banking, blockchain, interactive simulations & case studies for financial expertise.',
-    videoId: '1cIaHztrtiV7BT_ch4XGYM0CsV2_QwAbr',
-  },
-  {
-    name: 'Retail & FMCG',
-    image:
-      'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=900&auto=format&fit=crop',
-    text: 'The JFKC e-learning modules and its LMS platform supports Retail & FMCG for product training, customer service, sales, operations, and merchandising—enhancing skills across teams and covering launches and promotions.',
-    videoId: '15_sMIJSYMvwLSugT8lMHJzhx2yL4HFb8',
-  },
-  {
-    name: 'Healthcare & Pharma',
-    image:
-      'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=900&auto=format&fit=crop',
-    text: 'In Healthcare & Pharma, we support CME, training, and sales for continuous learning. Our modules cover procedures, patient care, compliance, and medical updates—tailored for pharmacology, disease management, and sales reps.',
-    videoId: '1WR6PM4NNGlcevS6wZuUgMwGHqGPPWaJw',
-  },
-  {
-    name: 'Aviation & Airlines',
-    image:
-      'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=900&auto=format&fit=crop',
-    text: 'We develop Safety, Technical, and Customer Service training modules covering aircraft systems, emergency procedures, compliance, and customer interaction—tailored for pilots, crew, and technicians, with immersive VR simulations.',
-    videoId: '1ktrz2WaKVxFC1xp-lXkbsoF8P-ANzhFX',
-  },
-  {
-    name: 'Automobiles & Manufacturing',
-    image:
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=900&auto=format&fit=crop',
-    text: 'We focus on Employee Skills, Just-in-Time Training, and Simulations with modules on assembly line operations, maintenance, quality, and safety—minimizing downtime and boosting efficiency through interactive and 3D simulations.',
-    videoId: '1CFXU6mdj2mDb86zzpjJ3tI3XpVLF47xE',
-  },
-  {
-    name: 'Oil & Gas',
-    image:
-      'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=900&auto=format&fit=crop',
-    text: 'We prioritize Safety, Compliance, Technical, and Emergency Response training with modules on drilling, rig safety, hazardous materials, and environmental regulations—customized for upstream, midstream, and downstream operations, featuring interactive emergency simulations.',
-    videoId: '1bzFwkrbn2jC5kHmM4dXk0SxE0d_zs2xh',
-  },
-  {
-    name: 'IT & Business Intelligence',
-    image:
-      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop',
-    text: 'JF Knowledge Centre focus on Continuous Learning with modules in programming, cybersecurity, cloud computing, data analytics, and Business Intelligence—keeping learners updated through trends and micro-learning for seamless progress.',
-    videoId: '1evcGAPhBCgYIx0N6o3AoIxUgilX9dheT',
-  },
-  {
-    name: 'Universities & Edtech',
-    image:
-      'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=900&auto=format&fit=crop',
-    text: 'In the evolving landscape of higher Education and EdTech, JF Knowledge Centre (JFKC) is redefining learning through AI-powered personalization and seamless LMS integration.',
-    videoId: '1E-kk6SIpKywtr3abjzOgK9W4lx6b_n6V',
-  },
-];
+import { industries } from '../data/industries';
 
 const Portfolio = () => {
   const [activeVideo, setActiveVideo] = useState(null);
@@ -84,9 +27,9 @@ const Portfolio = () => {
               <span className="text-orange-400">Across Industries</span>
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
-              Explore JFKC portfolio samples across BFSI, retail, healthcare, aviation,
-              manufacturing, energy, IT, and education — built for real-world skills and
-              measurable impact.
+              Explore JFKC portfolio samples across BFSI, retail, FMCG, e-commerce,
+              logistics, healthcare, aviation, manufacturing, energy, IT, education, and
+              enterprise learning — built for real-world skills and measurable impact.
             </p>
             <p className="mt-8 text-xs font-semibold tracking-[0.22em] text-orange-400 uppercase sm:text-[0.7rem]">
               Learning <span className="mx-2 text-orange-400/50">•</span> Industries{' '}
@@ -110,7 +53,7 @@ const Portfolio = () => {
                 Our Portfolio & Samples
               </p>
               <h2 className="text-3xl  tracking-tight text-slate-900 sm:text-5xl">
-                Eight industries.
+                {industries.length} industries.
                 <span className="block text-slate-500">One learning standard.</span>
               </h2>
             </div>
@@ -166,14 +109,13 @@ const Portfolio = () => {
                     <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-[0.95rem]">
                       {item.text}
                     </p>
-                    <button
-                      type="button"
-                      onClick={() => setActiveVideo(item)}
+                    <Link
+                      to={`/portfolio/${item.slug}`}
                       className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold text-orange-600 transition-colors hover:text-orange-500"
                     >
-                      View sample video
+                      View details &amp; sample
                       <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </button>
+                    </Link>
                   </div>
                 </article>
               );
