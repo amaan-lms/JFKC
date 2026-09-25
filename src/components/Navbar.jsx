@@ -124,13 +124,13 @@ const Navbar = () => {
             </Link>
 
             {/* Portfolio Link */}
-            {/* <Link 
+            <Link 
               to="/portfolio" 
               className={navClass(isPortfolio)}
               aria-current={isPortfolio ? 'page' : undefined}
             >
               Portfolio
-            </Link> */}
+            </Link>
 
             {/* Services Link */}
             <Link
@@ -150,7 +150,7 @@ const Navbar = () => {
               Products
             </Link>
 
-            {/* Training Dropdown */}
+            {/* Training Dropdown
             <div 
               className="relative"
               onMouseEnter={() => setActiveDropdown('training')}
@@ -165,15 +165,10 @@ const Navbar = () => {
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'training' ? 'rotate-180 text-orange-500' : solid ? 'text-gray-400' : 'text-white/50'}`} />
               </button>
 
-              {/* Training Mega Menu */}
               {activeDropdown === 'training' && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-[650px] pt-4">
                   <div className="bg-white rounded-3xl border border-gray-200 shadow-md overflow-hidden grid grid-cols-3 p-4 gap-4 animate-in fade-in slide-in-from-top-2 duration-200">
                     <div className="col-span-2 grid grid-cols-1 gap-1 p-1">
-                      
-                      
-
-                      {/* Option 1: Training Module */}
                       <Link
                         to="/training-modules"
                         onClick={() => setActiveDropdown(null)}
@@ -211,7 +206,6 @@ const Navbar = () => {
                       </Link>
                     </div>
 
-                    {/* Highlight Banner Side */}
                     <div className="bg-gray-900 rounded-2xl p-5 flex flex-col justify-between text-white relative overflow-hidden group">
                       <div>
                         <span className="text-[10px] font-bold tracking-wider uppercase text-orange-400 bg-orange-500/10 px-2.5 py-1 rounded-full border border-orange-500/20">
@@ -222,16 +216,14 @@ const Navbar = () => {
                           Boost workforce productivity with structured learning tracks.
                         </p>
                       </div>
-                      {/* <a href="#explore-training" className="inline-flex items-center text-xs font-semibold text-orange-400 hover:text-orange-300 gap-1 mt-4">
-                        Explore Solutions <ArrowRight className="w-3.5 h-3.5" />
-                      </a> */}
                     </div>
                   </div>
                 </div>
               )}
             </div>
+            */}
 
-            {/* Learning Dropdown */}
+            {/* Learning Dropdown
             <div 
               className="relative"
               onMouseEnter={() => setActiveDropdown('learning')}
@@ -246,13 +238,10 @@ const Navbar = () => {
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'learning' || isLearning ? 'rotate-180 text-orange-500' : solid ? 'text-gray-400' : 'text-white/50'}`} />
               </button>
 
-              {/* Learning Mega Menu */}
               {activeDropdown === 'learning' && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-[650px] pt-4">
                   <div className="bg-white rounded-3xl border border-gray-200 shadow-md overflow-hidden grid grid-cols-3 p-4 gap-4 animate-in fade-in slide-in-from-top-2 duration-200">
                     <div className="col-span-2 grid grid-cols-1 gap-1 p-1">
-                      
-                      {/* Option 1: Immersive Learning */}
                       <Link
                         to="/immersive-learning"
                         onClick={() => setActiveDropdown(null)}
@@ -271,7 +260,6 @@ const Navbar = () => {
                         </div>
                       </Link>
 
-                      {/* Option 2: Learning Technology */}
                       <Link
                         to="/learning-technology"
                         onClick={() => setActiveDropdown(null)}
@@ -291,7 +279,6 @@ const Navbar = () => {
                       </Link>
                     </div>
 
-                    {/* Highlight Banner Side */}
                     <div className="bg-gray-900 rounded-2xl p-5 flex flex-col justify-between text-white relative overflow-hidden group">
                       <div>
                         <span className="text-[10px] font-bold tracking-wider uppercase text-white bg-orange-500 px-2.5 py-1 rounded-full">
@@ -302,14 +289,12 @@ const Navbar = () => {
                           Transform educational workflows with modern smart technology.
                         </p>
                       </div>
-                      {/* <a href="#learn-tech" className="inline-flex items-center text-xs font-semibold text-orange-400 hover:text-orange-300 gap-1 mt-4">
-                        Discover Tech <ArrowRight className="w-3.5 h-3.5" />
-                      </a> */}
                     </div>
                   </div>
                 </div>
               )}
             </div>
+            */}
           </div>
 
           {/* Action Button */}
@@ -353,14 +338,14 @@ const Navbar = () => {
             About Us
           </Link>
 
-          {/* <Link
+          <Link
             to="/portfolio"
             onClick={() => setMobileMenuOpen(false)}
             className={mobileNavClass(isPortfolio)}
             aria-current={isPortfolio ? 'page' : undefined}
           >
             Portfolio
-          </Link> */}
+          </Link>
 
           <Link
             to="/services"
@@ -380,7 +365,7 @@ const Navbar = () => {
             Products
           </Link>
 
-          {/* Mobile Training Dropdown */}
+          {/* Mobile Training Dropdown
           <div>
             <button
               onClick={() => setMobileTrainingOpen(!mobileTrainingOpen)}
@@ -410,8 +395,9 @@ const Navbar = () => {
               </div>
             )}
           </div>
+          */}
 
-          {/* Mobile Learning Dropdown */}
+          {/* Mobile Learning Dropdown
           <div>
             <button
               onClick={() => setMobileLearningOpen(!mobileLearningOpen)}
@@ -441,6 +427,7 @@ const Navbar = () => {
               </div>
             )}
           </div>
+          */}
 
           {/* Mobile Action Button */}
           <div className="pt-3 border-t border-gray-100 mt-2">
