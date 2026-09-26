@@ -1,172 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Smartphone,
-  Target,
-  Users,
-  Award,
-  Lightbulb,
-  TrendingUp,
-  Settings,
-  Layers,
-  ArrowUpRight,
-  UserPlus,
-  Briefcase,
-  MonitorCheck,
-  Gamepad2,
-  Zap,
-  Database,
-  Globe,
-  Video,
-  PenTool,
-} from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import CTA from '../components/CTA';
-
-const services = [
-  {
-    name: 'Mobile Optimization',
-    short: 'Mobile',
-    text: 'Customizing e-learning content for seamless use on mobile devices through a mobile-first approach and responsive design techniques.',
-    image:
-      'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop',
-    Icon: Smartphone,
-  },
-  {
-    name: 'Learning Strategy',
-    short: 'Strategy',
-    text: "JFKC's strategic framework for delivering targeted, goal-driven learning solutions to partners.",
-    image:
-      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop',
-    Icon: Target,
-  },
-  {
-    name: 'Staff Augmentation',
-    short: 'Augmentation',
-    text: 'Enhancing workforce with external expertise to scale your project needs rapidly.',
-    image:
-      'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1200&auto=format&fit=crop',
-    Icon: Users,
-  },
-  {
-    name: 'Leadership Courses',
-    short: 'Leadership',
-    text: 'Enhancing leadership skills through targeted, executive-level development programs.',
-    image:
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop',
-    Icon: Award,
-  },
-  {
-    name: 'Learning Consultancy',
-    short: 'Consultancy',
-    text: 'Strategic advice and guidance on learning design, content frameworks, and organizational capability.',
-    image:
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop',
-    Icon: Lightbulb,
-  },
-  {
-    name: 'Sales Enablers',
-    short: 'Sales',
-    text: 'Providing tailored tools and enablement content to empower and upskill high-performing sales teams.',
-    image:
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
-    Icon: TrendingUp,
-  },
-  {
-    name: 'Service Execution',
-    short: 'Execution',
-    text: 'Practical deployment of services to meet client needs and keep programs running smoothly.',
-    image:
-      'https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1200&auto=format&fit=crop',
-    Icon: Settings,
-  },
-  {
-    name: 'Blended Product Training',
-    short: 'Blended',
-    text: 'Combined online and hands-on product education for maximum operational adoption.',
-    image:
-      'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1200&auto=format&fit=crop',
-    Icon: Layers,
-  },
-  {
-    name: 'Staffing and Recruitment',
-    short: 'Recruitment',
-    text: 'End-to-end talent acquisition to source, vet, and place top-tier professional talent.',
-    image:
-      'https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200&auto=format&fit=crop',
-    Icon: UserPlus,
-  },
-  {
-    name: 'CPA Consultancy',
-    short: 'CPA Advisory',
-    text: 'Expert accounting and financial consultancy services tailored to support organizational compliance and growth.',
-    image:
-      'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop',
-    Icon: Briefcase,
-  },
-  {
-    name: 'IT Assets — Hardware & Software',
-    short: 'IT Assets',
-    text: 'IT infrastructure provisioning, hardware deployment, and software management solutions.',
-    image:
-      'https://images.unsplash.com/photo-1588508065123-287b28e013da?q=80&w=1200&auto=format&fit=crop',
-    Icon: MonitorCheck,
-  },
-  {
-    name: 'Custom E-Learning Services',
-    short: 'Custom E-Learn',
-    text: 'Tailor-made digital learning courses designed to align precisely with your organizational goals.',
-    image:
-      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop',
-    Icon: Lightbulb,
-  },
-  {
-    name: 'Gamification, AR/VR, Simulations & ILT',
-    short: 'Immersive ILT',
-    text: 'Gamification, AR/VR simulations, and instructor-led sessions with trainers from different fields.',
-    image:
-      'https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?q=80&w=1200&auto=format&fit=crop',
-    Icon: Gamepad2,
-  },
-  {
-    name: 'Micro Learning Nuggets',
-    short: 'Micro-Learning',
-    text: 'Bite-sized, highly focused learning modules engineered for quick consumption and maximum retention.',
-    image:
-      'https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop',
-    Icon: Zap,
-  },
-  {
-    name: 'Data Annotation Services',
-    short: 'Data Annotation',
-    text: 'High-quality data labeling and annotation solutions to train machine learning and AI systems.',
-    image:
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
-    Icon: Database,
-  },
-  {
-    name: 'Localization Services',
-    short: 'Localization',
-    text: 'Adapting content culturally and linguistically for global audiences across multi-region markets.',
-    image:
-      'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1200&auto=format&fit=crop',
-    Icon: Globe,
-  },
-  {
-    name: 'VILT',
-    short: 'VILT',
-    text: 'Virtual Instructor-Led Training — interactive, real-time online classroom sessions with qualified instructors.',
-    image:
-      'https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?q=80&w=1200&auto=format&fit=crop',
-    Icon: Video,
-  },
-  {
-    name: 'Content Creation & Instructional Designer',
-    short: 'Content Design',
-    text: 'Instructional design and content creation for courses, scripts, storyboards, and learning journeys that keep learners engaged.',
-    image:
-      'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop',
-    Icon: PenTool,
-  },
-];
+import { services } from '../data/services';
 
 const AUTO_MS = 4500;
 
@@ -269,13 +105,21 @@ const Services = () => {
                 <p className="mt-5 max-w-md text-sm leading-relaxed text-slate-600 sm:text-base">
                   {current.text}
                 </p>
-                <a
-                  href="#book-appointment"
-                  className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-orange-500"
-                >
-                  Talk to us
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    to={`/services/${current.slug}`}
+                    className="inline-flex w-fit items-center gap-2 rounded-full bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-orange-400"
+                  >
+                    View details
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="inline-flex w-fit items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+                  >
+                    Talk to us
+                  </Link>
+                </div>
               </div>
 
               {/* Progress bar */}
@@ -315,10 +159,9 @@ const Services = () => {
           {/* Numbered index strip */}
           <div className="mt-8 flex flex-wrap gap-2 sm:gap-3">
             {services.map((item, index) => (
-              <button
-                key={item.name}
-                type="button"
-                onClick={() => select(index)}
+              <Link
+                key={item.slug}
+                to={`/services/${item.slug}`}
                 className={`min-w-[calc(50%-0.25rem)] flex-1 rounded-2xl px-2 py-3 text-center transition-all duration-300 sm:min-w-[calc(33.333%-0.5rem)] lg:min-w-[calc(20%-0.6rem)] ${
                   index === active
                     ? 'bg-orange-500 text-white'
@@ -331,7 +174,7 @@ const Services = () => {
                 <span className="mt-1 block truncate text-[11px] font-semibold sm:text-xs">
                   {item.short}
                 </span>
-              </button>
+              </Link>
             ))}
           </div>
         </div>

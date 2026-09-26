@@ -1,0 +1,615 @@
+import {
+  Smartphone,
+  Target,
+  Users,
+  Award,
+  Lightbulb,
+  TrendingUp,
+  Settings,
+  Layers,
+  UserPlus,
+  Briefcase,
+  MonitorCheck,
+  Gamepad2,
+  Zap,
+  Database,
+  Globe,
+  Video,
+  PenTool,
+  Megaphone,
+} from 'lucide-react';
+
+export const services = [
+  {
+    slug: 'mobile-optimization',
+    name: 'Mobile Optimization',
+    short: 'Mobile',
+    text: 'Customizing e-learning content for seamless use on mobile devices through a mobile-first approach and responsive design techniques.',
+    overview: [
+      'Learners no longer sit at desks. They open a module on a phone between shifts, finish a quiz on a tablet in the field, or review a policy on a commute. If your content was built for a desktop window, that moment is lost.',
+      'JFKC redesigns courses so every screen, interaction, and assessment works cleanly on small devices. We start with the smallest viewport, then scale up — not the other way around — so touch targets, type, media, and navigation feel native on phones and tablets.',
+      'The result is learning that actually gets finished: faster load times, fewer drop-offs, and the same instructional quality whether someone is at a workstation or on the move.',
+    ],
+    offerings: [
+      'Responsive course shells that adapt layouts, media, and assessments across phone, tablet, and desktop.',
+      'Touch-first navigation, larger hit areas, and swipe-friendly carousels instead of hover-only desktop patterns.',
+      'Compressed video, audio, and assets so modules load on mid-range devices and mixed network conditions.',
+      'SCORM / xAPI packaging tested on common LMS mobile players and in-app browsers.',
+    ],
+    process: [
+      { title: 'Audit', body: 'We review current modules, device analytics, and the moments learners actually open content.' },
+      { title: 'Rebuild', body: 'Layouts, media, and interactions are redesigned mobile-first, then verified on real devices.' },
+      { title: 'Validate', body: 'We test load, tap targets, and LMS playback so the course holds up in production.' },
+    ],
+    outcomes: [
+      'Higher completion on phones and tablets',
+      'Fewer support tickets about “broken” mobile views',
+      'Consistent branding from pocket to desktop',
+    ],
+    audience: 'L&D teams rolling out field, retail, or hybrid programs where most learners will never sit at a laptop.',
+    image:
+      'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop',
+    Icon: Smartphone,
+  },
+  {
+    slug: 'learning-strategy',
+    name: 'Learning Strategy',
+    short: 'Strategy',
+    text: "JFKC's strategic framework for delivering targeted, goal-driven learning solutions to partners.",
+    overview: [
+      'Training that is not tied to a business outcome becomes a catalogue of courses. JFKC builds a learning strategy that starts with what the organisation must change — capability, compliance, sales, safety, or culture — and works backwards into journeys, formats, and measures.',
+      'We map audiences, current assets, delivery channels, and gaps. Then we recommend a portfolio: what to build, what to retire, what to buy, and what to enable managers to do on the job.',
+      'Partners leave with a sequenced plan, not a slide deck of trends. Priorities are clear, owners are named, and success is defined in the same language as the rest of the business.',
+    ],
+    offerings: [
+      'Capability and audience mapping against role families and performance goals.',
+      'A multi-year learning portfolio with build / buy / retire recommendations.',
+      'Channel strategy across LMS, VILT, ILT, performance support, and manager-led practice.',
+      'Measurement model: leading indicators, completion quality, and business metrics.',
+    ],
+    process: [
+      { title: 'Discover', body: 'Stakeholder interviews, existing content review, and a clear view of the constraint you are solving.' },
+      { title: 'Frame', body: 'We define journeys, formats, and governance so L&D and the business share one plan.' },
+      { title: 'Sequence', body: 'A phased roadmap with owners, effort, and how you will know it is working.' },
+    ],
+    outcomes: [
+      'Learning spend aligned to real business goals',
+      'Fewer one-off courses with no owner',
+      'A shared language between L&D and the business',
+    ],
+    audience: 'Heads of L&D and transformation leads who need a coherent plan before commissioning more content.',
+    image:
+      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop',
+    Icon: Target,
+  },
+  {
+    slug: 'staffing-and-augmentation',
+    name: 'Staffing and Augmentation',
+    short: 'Staffing',
+    text: 'Enhancing workforce with external expertise to scale your project needs rapidly.',
+    overview: [
+      'Projects stall when the team is missing an instructional designer, a storyboarder, an LMS admin, or a localisation lead — and hiring full-time takes months. JFKC augmentation puts specialists on your programmes in weeks, not quarters.',
+      'We embed people who already work in learning production: they pick up your templates, your SME process, and your quality bar. You keep direction; we add capacity and craft.',
+      'Engagements can be a single role for a sprint or a blended pod that covers design, media, and QA until your internal bench is ready again.',
+    ],
+    offerings: [
+      'Instructional designers, writers, visual designers, and e-learning developers on contract.',
+      'LMS administrators, QA reviewers, and project coordinators for peak delivery periods.',
+      'Pods that work as one unit — design through publish — under your programme manager.',
+      'Knowledge handover so the work stays in your organisation when the engagement ends.',
+    ],
+    process: [
+      { title: 'Brief', body: 'We match skills, tools, and timezone to the gap you need filled.' },
+      { title: 'Embed', body: 'Specialists join your stand-ups, systems, and review cycles from week one.' },
+      { title: 'Handover', body: 'Assets, process notes, and training for your team so capacity does not vanish overnight.' },
+    ],
+    outcomes: [
+      'Programmes stay on timeline during demand spikes',
+      'Specialist craft without a permanent headcount freeze',
+      'Cleaner handover than a string of freelancers',
+    ],
+    audience: 'Programme managers who need proven learning talent on a deadline, not a six-month hire cycle.',
+    image:
+      'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1200&auto=format&fit=crop',
+    Icon: Users,
+  },
+  {
+    slug: 'leadership-courses',
+    name: 'Leadership Courses',
+    short: 'Leadership',
+    text: 'Enhancing leadership skills through targeted, executive-level development programs.',
+    overview: [
+      'Leadership development fails when it is generic TED-style inspiration with no link to how your managers actually spend their week. JFKC designs courses around the conversations, decisions, and tensions leaders face in your organisation.',
+      'Programmes mix short digital modules, live practice, and manager-of-manager coaching. Scenarios are written from your context — not stock “difficult employee” scripts — so first-line and senior leaders recognise themselves.',
+      'We cover the foundations (feedback, priorities, psychological safety) and the stretch (change, commercial judgment, leading hybrid teams) without turning every cohort into a multi-year MBA.',
+    ],
+    offerings: [
+      'Role-based pathways for first-line, mid-level, and senior leaders.',
+      'Scenario practice, peer circles, and facilitated live sessions with field-experienced trainers.',
+      'Toolkits managers can use the next day: 1:1 agendas, feedback frames, and decision checklists.',
+      'Measurement through behaviour indicators and sponsor reviews, not smile-sheet scores alone.',
+    ],
+    process: [
+      { title: 'Diagnose', body: 'We interview sponsors and a sample of leaders to find the real capability gaps.' },
+      { title: 'Design', body: 'Journeys combine digital, live practice, and on-the-job application over a defined period.' },
+      { title: 'Run', body: 'Facilitation, coaching, and iteration after each cohort so the next one is sharper.' },
+    ],
+    outcomes: [
+      'Leaders who practise, not just attend',
+      'Shared language for feedback and priorities',
+      'Sponsors who can see change in team behaviour',
+    ],
+    audience: 'HR and L&D teams building leadership benches for first-line through senior roles.',
+    image:
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop',
+    Icon: Award,
+  },
+  {
+    slug: 'learning-consultancy',
+    name: 'Learning Consultancy',
+    short: 'Consultancy',
+    text: 'Strategic advice and guidance on learning design, content frameworks, and organizational capability.',
+    overview: [
+      'Sometimes you do not need another vendor to “build 40 courses.” You need a clear view of what is broken: the design system, the SME bottleneck, the LMS that nobody trusts, or a team that has never been trained to write for learning.',
+      'JFKC consultancy sits with your stakeholders and produces decisions. We review frameworks, vendor mixes, quality standards, and operating models, then recommend a practical path — including what not to do.',
+      'Advice is grounded in how learning teams actually ship work. You get artefacts you can use: design systems, review gates, role definitions, and a capability plan for your internal staff.',
+    ],
+    offerings: [
+      'Learning operating-model reviews: roles, gates, vendors, and where work gets stuck.',
+      'Content frameworks and design systems so every new module looks and teaches consistently.',
+      'Capability building for internal IDs, SMEs, and reviewers.',
+      'Independent quality reviews of existing catalogues and vendor output.',
+    ],
+    process: [
+      { title: 'Listen', body: 'Workshops and artefact reviews to see how work really moves, not how the org chart says it does.' },
+      { title: 'Recommend', body: 'A short set of decisions with trade-offs, not a 80-page report nobody implements.' },
+      { title: 'Enable', body: 'Templates, training, and optional follow-on support while you change how the team works.' },
+    ],
+    outcomes: [
+      'Fewer stalled programmes and unclear owners',
+      'A design standard the whole team can follow',
+      'Internal capability that outlasts any single project',
+    ],
+    audience: 'L&D directors and transformation leads who want an outside view before they scale production.',
+    image:
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop',
+    Icon: Lightbulb,
+  },
+  {
+    slug: 'sales-enablers',
+    name: 'Sales Enablers',
+    short: 'Sales',
+    text: 'Providing tailored tools and enablement content to empower and upskill high-performing sales teams.',
+    overview: [
+      'Sales teams do not need another 40-minute product dump. They need the talk track, the objection, the demo path, and the one-pager they will actually open before a call.',
+      'JFKC builds enablement that lives where sellers work: short modules, battlecards, role-plays, and certification that product marketing and sales leadership both recognise as useful.',
+      'We partner with product, marketing, and sales ops so messaging stays consistent from launch deck to first conversation — and updates when the offer changes.',
+    ],
+    offerings: [
+      'Launch kits: messaging, competitive talk tracks, and just-in-time product refreshers.',
+      'Role-play and certification paths for new hires and for major offer changes.',
+      'Battlecards, call planners, and objection libraries written in seller language.',
+      'Manager coaching guides so enablement does not stop at the LMS.',
+    ],
+    process: [
+      { title: 'Align', body: 'We sit with product marketing and top sellers to capture what actually wins deals.' },
+      { title: 'Craft', body: 'Assets are short, searchable, and tied to moments in the sales cycle.' },
+      { title: 'Coach', body: 'Managers get simple rituals to practise and inspect, not another dashboard they ignore.' },
+    ],
+    outcomes: [
+      'Faster ramp for new sellers',
+      'Consistent messaging on live calls',
+      'Enablement that sales leadership will sponsor again',
+    ],
+    audience: 'Revenue and enablement leaders launching products or tightening how teams sell.',
+    image:
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
+    Icon: TrendingUp,
+  },
+  {
+    slug: 'service-execution',
+    name: 'Service Execution',
+    short: 'Execution',
+    text: 'Practical deployment of services to meet client needs and keep programs running smoothly.',
+    overview: [
+      'A signed scope is not a live programme. Service execution is the unglamorous work of standing up delivery: environments, schedules, facilitators, reviews, defect logs, and the weekly rhythm that keeps stakeholders calm.',
+      'JFKC runs programmes end to end — or steps in when an existing vendor or internal team is slipping. We bring project discipline without turning learning into a ticket factory.',
+      'You get a single accountable team for go-lives, releases, and the first months of operation, so learners and sponsors experience a programme that simply works.',
+    ],
+    offerings: [
+      'Programme setup: timelines, RACI, environments, and review cadences.',
+      'Release management for courses, cohorts, and LMS configuration.',
+      'Live operations support: facilitator briefing, attendance, and issue triage.',
+      'Status reporting that executives can read in two minutes.',
+    ],
+    process: [
+      { title: 'Stabilise', body: 'We lock scope, owners, and the first release so the team is not improvising every week.' },
+      { title: 'Deliver', body: 'Sprints, reviews, and go-live checklists until the programme is in learners’ hands.' },
+      { title: 'Operate', body: 'Hypercare and a clean handover to your BAU team or an ongoing JFKC retainer.' },
+    ],
+    outcomes: [
+      'On-time go-lives with fewer last-minute surprises',
+      'One place to see status, risks, and decisions',
+      'Programmes that keep running after launch week',
+    ],
+    audience: 'Clients who have a plan on paper and need a team that will actually ship and run it.',
+    image:
+      'https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1200&auto=format&fit=crop',
+    Icon: Settings,
+  },
+  {
+    slug: 'blended-product-training',
+    name: 'Blended Product Training',
+    short: 'Blended',
+    text: 'Combined online and hands-on product education for maximum operational adoption.',
+    overview: [
+      'Product training fails when people watch a demo video and are then expected to use a complex system on Monday. Blended product training pairs self-paced fundamentals with guided practice in the real environment — sandbox, floor, or lab.',
+      'JFKC designs the mix: what must be learned before a live session, what must be practised with a coach, and what belongs in a job aid next to the tool. SMEs stay involved without becoming full-time trainers.',
+      'Whether you are rolling out software, equipment, or a service process, learners leave able to do the work, not just recognise screenshots.',
+    ],
+    offerings: [
+      'Pre-work modules that cover concepts so live time is reserved for practice.',
+      'Lab or floor sessions with checklists, observed tasks, and remediation.',
+      'Performance support: quick guides, in-app hints, and manager observation forms.',
+      'Certification tied to demonstrated tasks, not only quiz scores.',
+    ],
+    process: [
+      { title: 'Map tasks', body: 'We break the product into the jobs people must complete, not a feature list.' },
+      { title: 'Blend', body: 'Digital, live, and on-the-job pieces are sequenced so each hour has a purpose.' },
+      { title: 'Prove', body: 'Learners demonstrate in the real or sandbox environment before they are signed off.' },
+    ],
+    outcomes: [
+      'Faster, safer product adoption',
+      'Less “shadow training” after go-live',
+      'Managers who can see who is actually ready',
+    ],
+    audience: 'Operations and product teams launching tools or processes that people must use correctly.',
+    image:
+      'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1200&auto=format&fit=crop',
+    Icon: Layers,
+  },
+  {
+    slug: 'staffing-and-recruitment',
+    name: 'Staffing and Recruitment',
+    short: 'Recruitment',
+    text: 'End-to-end talent acquisition to source, vet, and place top-tier professional talent.',
+    overview: [
+      'Learning, digital, and professional roles are noisy markets. JFKC recruitment is built for the profiles we already work with: instructional designers, facilitators, LMS specialists, content leads, and adjacent professional talent.',
+      'We source, screen for craft (not just keywords), and present a shortlist you can decide on. Interviews include work samples and scenario questions so you are not guessing from a CV.',
+      'The service covers permanent and contract search, with a process that respects both the hiring manager’s time and the candidate’s.',
+    ],
+    offerings: [
+      'Role scoping and scorecards so “good” is defined before the first call.',
+      'Sourcing across networks, not only inbound applications.',
+      'Skills screens, portfolio review, and structured interview kits.',
+      'Offer support and a structured first-week brief for the new hire.',
+    ],
+    process: [
+      { title: 'Define', body: 'We lock the role, must-haves, and how you will judge a strong hire.' },
+      { title: 'Search', body: 'Targeted outreach and screening until the shortlist is genuinely short.' },
+      { title: 'Place', body: 'Interviews, references, and onboarding notes so the person can contribute quickly.' },
+    ],
+    outcomes: [
+      'Shorter time-to-offer for specialist roles',
+      'Candidates who can show the work, not only describe it',
+      'Less churn from mismatched expectations',
+    ],
+    audience: 'Hiring managers filling L&D, digital, and professional roles who need a specialist search, not a volume agency.',
+    image:
+      'https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200&auto=format&fit=crop',
+    Icon: UserPlus,
+  },
+  {
+    slug: 'cpa-services',
+    name: 'CPA Services',
+    short: 'CPA',
+    text: 'Expert accounting and financial consultancy services tailored to support organizational compliance and growth.',
+    overview: [
+      'Growing organisations outpace informal bookkeeping. JFKC CPA services give founders and finance leads a disciplined view of accounts, compliance, and the numbers that should inform decisions.',
+      'We support bookkeeping hygiene, statutory filings, management reporting, and advisory conversations — in language operators can use, not only auditors.',
+      'The engagement can be a standing monthly rhythm or a focused project: cleanup, year-end, or a board pack that finally matches how the business runs.',
+    ],
+    offerings: [
+      'Bookkeeping review, chart-of-accounts cleanup, and monthly close support.',
+      'Statutory and compliance filings with a clear calendar of obligations.',
+      'Management reports and cash views for operators and boards.',
+      'Advisory on controls, vendor processes, and growth-stage finance hygiene.',
+    ],
+    process: [
+      { title: 'Assess', body: 'We review books, systems, and the decisions you need numbers for.' },
+      { title: 'Clean', body: 'Gaps, mappings, and a close calendar so reporting is not a fire drill.' },
+      { title: 'Advise', body: 'A standing cadence of reports and conversations as the business changes.' },
+    ],
+    outcomes: [
+      'Reliable monthly numbers',
+      'Fewer compliance surprises',
+      'Finance conversations that help operators act',
+    ],
+    audience: 'SMEs and growing teams that need professional accounting support without a full in-house finance department.',
+    image:
+      'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop',
+    Icon: Briefcase,
+  },
+  {
+    slug: 'digital-marketing-services',
+    name: 'Digital Marketing Services',
+    short: 'Digital Marketing',
+    text: 'Campaigns, content, and channel strategy to grow reach, leads, and brand visibility across digital platforms.',
+    overview: [
+      'Visibility without a point of view is just noise. JFKC digital marketing builds campaigns and always-on content that explain what you offer, who it is for, and why someone should talk to you now.',
+      'We work across search, social, landing pages, and nurture — with creative that matches the same orange-and-slate discipline as the rest of your brand, or we help you find one.',
+      'Reporting is tied to enquiries and qualified conversations, not vanity charts. You always know what we are running and what we will change next.',
+    ],
+    offerings: [
+      'Channel strategy and campaign planning for search, paid, and organic social.',
+      'Landing pages, ads, and content that convert attention into conversations.',
+      'Email and nurture sequences for leads who are not ready to buy this week.',
+      'Analytics setup and monthly reviews with a short list of next experiments.',
+    ],
+    process: [
+      { title: 'Position', body: 'Audience, offer, and proof — so creative has something true to say.' },
+      { title: 'Launch', body: 'Assets go live with tracking, so we can see what people actually do.' },
+      { title: 'Iterate', body: 'We double down on what converts and retire what only looks busy.' },
+    ],
+    outcomes: [
+      'Clearer pipeline from digital channels',
+      'Messaging that matches how you actually sell',
+      'A rhythm of experiments instead of one-off bursts',
+    ],
+    audience: 'Teams that need professional digital marketing without a large in-house studio.',
+    image:
+      'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=1200&auto=format&fit=crop',
+    Icon: Megaphone,
+  },
+  {
+    slug: 'it-assets',
+    name: 'IT Assets — Hardware & Software',
+    short: 'IT Assets',
+    text: 'IT infrastructure provisioning, hardware deployment, and software management solutions.',
+    overview: [
+      'Learning programmes and operations both fail when devices, licences, and access are an afterthought. JFKC provisions hardware and software so people can start work — and start learning — on day one.',
+      'We handle device kits, standard images, licence allocation, and the basic hygiene of asset records so you are not chasing laptops and unused seats at the end of every quarter.',
+      'Whether you are standing up a cohort lab, a remote team, or a classroom, the kit is specified, delivered, and documented.',
+    ],
+    offerings: [
+      'Hardware specification and deployment for classrooms, labs, and remote staff.',
+      'Software licence planning, allocation, and renewal calendars.',
+      'Asset registers and handover packs so ownership is never a mystery.',
+      'Basic setup support: imaging, accounts, and first-login checklists.',
+    ],
+    process: [
+      { title: 'Specify', body: 'We match devices and licences to the actual jobs and learning environments.' },
+      { title: 'Deploy', body: 'Kits arrive configured, labelled, and ready for the people who will use them.' },
+      { title: 'Record', body: 'You keep a living register and a plan for refresh and returns.' },
+    ],
+    outcomes: [
+      'Fewer delayed starts due to missing kit',
+      'Licences that match real usage',
+      'A clear trail of what you own and who has it',
+    ],
+    audience: 'Operations and L&D teams standing up programmes or workplaces that depend on reliable devices and software.',
+    image:
+      'https://images.unsplash.com/photo-1588508065123-287b28e013da?q=80&w=1200&auto=format&fit=crop',
+    Icon: MonitorCheck,
+  },
+  {
+    slug: 'e-learning',
+    name: 'E-Learning',
+    short: 'E-Learning',
+    text: 'Custom e-learning modules and digital courses designed to align with your organizational goals.',
+    overview: [
+      'Custom e-learning is still the backbone of scalable training — when it is written for a real job, not a slide dump with a next button. JFKC designs and builds modules that teach, assess, and look like they belong in your brand.',
+      'We work from outcomes: what the learner must do differently. Storyboards, interactions, media, and knowledge checks are built to that bar, then packaged for your LMS.',
+      'Programmes can be a single compliance module or a multi-course academy. Either way, SMEs stay in the loop without becoming full-time authors.',
+    ],
+    offerings: [
+      'Outcome-led storyboards, scripts, and interaction design.',
+      'Development in the authoring stack you use — or the one we recommend for the job.',
+      'Media: illustration, motion, VO, and on-screen talent when it earns its place.',
+      'LMS packaging, accessibility passes, and a QA cycle you can repeat.',
+    ],
+    process: [
+      { title: 'Scope', body: 'Audience, outcomes, and constraints — including time, LMS, and brand.' },
+      { title: 'Build', body: 'Storyboard approval, then development with visible review builds.' },
+      { title: 'Publish', body: 'QA, packaging, and a launch pack for communications and support.' },
+    ],
+    outcomes: [
+      'Courses people finish and can apply',
+      'A repeatable production path with your SMEs',
+      'Assets you can update without starting from zero',
+    ],
+    audience: 'L&D teams that need custom digital courses, not a marketplace catalogue.',
+    image:
+      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop',
+    Icon: Lightbulb,
+  },
+  {
+    slug: 'gamification-ar-vr-ilt',
+    name: 'Gamification, AR/VR, Simulations & ILT',
+    short: 'Immersive ILT',
+    text: 'Gamification, AR/VR simulations, and instructor-led sessions with trainers from different fields.',
+    overview: [
+      'Some skills cannot be learned by reading. They need a safe place to fail, a score that means something, or a room with a trainer who has done the job. JFKC designs immersive and instructor-led experiences when the outcome justifies the format.',
+      'Gamification is used to practise decisions, not to sprinkle badges on a linear course. AR/VR and simulations put people in the environment — a shop floor, a customer conversation, a safety-critical procedure — without the real-world cost of a mistake.',
+      'ILT sessions are staffed with trainers from the relevant field, so the room (or the headset) stays honest.',
+    ],
+    offerings: [
+      'Serious games and scored scenarios tied to real decisions.',
+      'AR/VR and desktop simulations for high-stakes or hard-to-access environments.',
+      'Instructor-led workshops with practitioners, not generic facilitators.',
+      'Facilitator guides and debrief structures so the learning survives after the session.',
+    ],
+    process: [
+      { title: 'Choose the medium', body: 'We only recommend immersive or ILT when practice, risk, or culture requires it.' },
+      { title: 'Prototype', body: 'A thin slice of the experience is tested with real learners before full build.' },
+      { title: 'Facilitate', body: 'Sessions and debriefs are run — or we train your people to run them.' },
+    ],
+    outcomes: [
+      'Practice that feels like the job',
+      'Safer rehearsal of high-stakes tasks',
+      'Live rooms that stay sharp, not theatrical',
+    ],
+    audience: 'Organisations training skills that need practice, presence, or a simulated environment.',
+    image:
+      'https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?q=80&w=1200&auto=format&fit=crop',
+    Icon: Gamepad2,
+  },
+  {
+    slug: 'micro-learning-nuggets',
+    name: 'Micro Learning Nuggets',
+    short: 'Micro-Learning',
+    text: 'Bite-sized, highly focused learning modules engineered for quick consumption and maximum retention.',
+    overview: [
+      'People will give you five minutes if those five minutes solve the next task. Micro learning nuggets are designed for that window: one objective, one practice, one way to remember it later.',
+      'JFKC writes and produces short assets — video, cards, audio, or interactive — that sit in the flow of work or as a campaign over days, not as a 40-slide “micro” course that is just a long course cut up.',
+      'Nuggets can stand alone or stitch into a larger journey. Either way, they are searchable, reusable, and easy to update when the process changes.',
+    ],
+    offerings: [
+      'Single-objective modules of two to seven minutes with a clear call to action.',
+      'Campaign sequences: a week of nudges instead of one forgotten launch email.',
+      'Job-aid companions so the nugget is not the only place the knowledge lives.',
+      'Analytics on completion and reuse so you know which pieces earn their keep.',
+    ],
+    process: [
+      { title: 'Cut', body: 'We find the moments that deserve a nugget — and kill the ones that need a real course.' },
+      { title: 'Write tight', body: 'Scripts and visuals are built for one sitting, on a phone if needed.' },
+      { title: 'Place', body: 'Assets go where work happens: LMS, Teams, email, or a manager’s huddle.' },
+    ],
+    outcomes: [
+      'Higher voluntary completion',
+      'Knowledge that is easy to refresh',
+      'A library you can remix instead of rebuild',
+    ],
+    audience: 'Teams that need performance support and refreshers, not another hour-long mandatory course.',
+    image:
+      'https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop',
+    Icon: Zap,
+  },
+  {
+    slug: 'data-annotation-services',
+    name: 'Data Annotation Services',
+    short: 'Data Annotation',
+    text: 'High-quality data labeling and annotation solutions to train machine learning and AI systems.',
+    overview: [
+      'Models are only as honest as the labels they learn from. JFKC data annotation provides structured labelling — text, image, audio, and video — with guidelines, gold sets, and review so quality is not left to chance.',
+      'We work with your ontology and edge cases, not a generic tag set. Annotators are trained on your definitions, and disagreements are escalated instead of silently averaged.',
+      'Delivery can be a one-off corpus or an ongoing pipeline as your product and model change.',
+    ],
+    offerings: [
+      'Guideline writing, gold-standard sets, and annotator training.',
+      'Labelling for classification, NER, bounding boxes, transcription, and custom schemas.',
+      'Multi-pass review and inter-annotator checks on agreed samples.',
+      'Secure handling and export in the formats your ML team already uses.',
+    ],
+    process: [
+      { title: 'Define', body: 'We lock the schema, examples, and what “good” looks like on hard cases.' },
+      { title: 'Label', body: 'Trained annotators work in batches with review baked into the queue.' },
+      { title: 'Ship', body: 'You receive versioned datasets and notes on remaining ambiguity.' },
+    ],
+    outcomes: [
+      'Labels that match your real ontology',
+      'Fewer silent errors in training data',
+      'A process you can rerun as the model evolves',
+    ],
+    audience: 'Product and ML teams that need reliable human annotation, not a black-box click farm.',
+    image:
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
+    Icon: Database,
+  },
+  {
+    slug: 'localization-services',
+    name: 'Localization Services',
+    short: 'Localization',
+    text: 'Adapting content culturally and linguistically for global audiences across multi-region markets.',
+    overview: [
+      'Translation is not localisation. A course that works in one market can feel tone-deaf, legally wrong, or simply unreadable in another. JFKC adapts learning and marketing content for language, culture, examples, and layout.',
+      'We handle transcreation, on-screen text, voice, subtitles, and the engineering work of resizing and re-exporting modules so the experience still feels designed — not pasted.',
+      'Reviewers in-market catch the things a glossary will never catch: humour, hierarchy, and what you should never say.',
+    ],
+    offerings: [
+      'Linguistic and cultural adaptation of courses, scripts, and job aids.',
+      'VO, subtitles, and on-screen text with length-aware layout fixes.',
+      'In-country or in-language review against your brand and compliance notes.',
+      'Re-packaging for LMS so every locale publishes cleanly.',
+    ],
+    process: [
+      { title: 'Prepare', body: 'We extract strings, lock terminology, and flag culture-sensitive scenes early.' },
+      { title: 'Adapt', body: 'Linguists and designers work together so the module still looks intentional.' },
+      { title: 'Review', body: 'In-language QA and a publish pack per locale.' },
+    ],
+    outcomes: [
+      'Locales that feel written for that audience',
+      'Fewer layout breaks after translation',
+      'A glossary and process you can reuse',
+    ],
+    audience: 'Global programmes that must teach the same skill without sounding like a bad export.',
+    image:
+      'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1200&auto=format&fit=crop',
+    Icon: Globe,
+  },
+  {
+    slug: 'vilt',
+    name: 'VILT',
+    short: 'VILT',
+    text: 'Virtual Instructor-Led Training — interactive, real-time online classroom sessions with qualified instructors.',
+    overview: [
+      'Virtual instructor-led training is not a webinar with a quiz at the end. JFKC designs and runs live online classrooms where people talk, practise, and leave with work they started in the session.',
+      'Sessions are built for the platform you use — Teams, Zoom, or a virtual classroom — with breakouts, whiteboards, and timed activities so cameras stay on for a reason.',
+      'Instructors are briefed on your content and your audience. You get facilitator guides, producer support if you need it, and a recording plan that does not replace the live value.',
+    ],
+    offerings: [
+      'Session design: timing, activities, and what belongs in pre-work versus live.',
+      'Facilitation and producer support for cohorts of any size you actually want to teach.',
+      'Digital workbooks and post-session practice so the day does not evaporate.',
+      'Train-the-trainer so your SMEs can run the room without losing the design.',
+    ],
+    process: [
+      { title: 'Design the room', body: 'We storyboard the live hours the way we storyboard e-learning — every block has a job.' },
+      { title: 'Rehearse', body: 'Tech checks, facilitator run-throughs, and a plan for the things that always go wrong.' },
+      { title: 'Deliver', body: 'Live sessions, capture of questions, and a tight follow-up to the next action.' },
+    ],
+    outcomes: [
+      'Live time that feels like a workshop, not a broadcast',
+      'Consistent quality across cohorts and time zones',
+      'Facilitators who can run it again without us',
+    ],
+    audience: 'Teams that need real-time teaching at scale without flying everyone to a hotel.',
+    image:
+      'https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?q=80&w=1200&auto=format&fit=crop',
+    Icon: Video,
+  },
+  {
+    slug: 'content-creation-instructional-design',
+    name: 'Content Creation & Instructional Designer',
+    short: 'Content Design',
+    text: 'Instructional design and content creation for courses, scripts, storyboards, and learning journeys that keep learners engaged.',
+    overview: [
+      'Good learning starts on the page — the objective, the story, the question the learner cannot answer yet. JFKC instructional designers and content creators turn SME knowledge into journeys people will follow.',
+      'We write storyboards, scripts, assessments, and facilitator notes. Visual and motion teams then have something worth producing. Nothing is “designed” after a pile of slides has already been built.',
+      'The work covers courses, campaigns, and performance support. Tone stays human. Structure stays honest about what can be learned in the time you have.',
+    ],
+    offerings: [
+      'Learning journeys, storyboards, and assessment design from a blank brief.',
+      'Scripts for video, VO, and on-screen talent that sound like people, not brochures.',
+      'SME interviews and content workshops that extract what actually matters.',
+      'Editorial and ID review of existing drafts you do not want to throw away.',
+    ],
+    process: [
+      { title: 'Find the job', body: 'We interview SMEs and learners until the real task is on paper.' },
+      { title: 'Structure', body: 'Objectives, sequence, and practice are locked before production spends money.' },
+      { title: 'Write', body: 'Drafts go through review gates so stakeholders see the teaching, not just the polish.' },
+    ],
+    outcomes: [
+      'Content that teaches, not just informs',
+      'SMEs who recognise their expertise without owning the whole draft',
+      'A storyboard production can build without guessing',
+    ],
+    audience: 'Teams that need writers and IDs who can hold the brief from first interview to approved script.',
+    image:
+      'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop',
+    Icon: PenTool,
+  },
+];
+
+export const getServiceBySlug = (slug) =>
+  services.find((item) => item.slug === slug);

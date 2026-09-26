@@ -7,6 +7,7 @@ import Contact from './pages/Contact';
 import Portfolio from './pages/Portfolio';
 import IndustryDetail from './pages/IndustryDetail';
 import Services from './pages/Services';
+import ServiceDetail from './pages/ServiceDetail';
 import Products from './pages/Products';
 import TrainingModules from './pages/TrainingModules';
 import TrainingDelivery from './pages/TrainingDelivery';
@@ -30,6 +31,7 @@ function App() {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/portfolio/:slug" element={<IndustryDetail />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
         <Route path="/products" element={<Products />} />
         <Route path="/training-modules" element={<TrainingModules />} />
         <Route path="/training-delivery" element={<TrainingDelivery />} />

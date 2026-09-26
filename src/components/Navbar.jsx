@@ -23,6 +23,7 @@ const Navbar = () => {
     location.pathname === '/portfolio' ||
     location.pathname.startsWith('/portfolio/') ||
     location.pathname === '/services' ||
+    location.pathname.startsWith('/services/') ||
     location.pathname === '/products' ||
     location.pathname === '/training-modules' ||
     location.pathname === '/training-delivery' ||
