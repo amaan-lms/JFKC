@@ -67,14 +67,14 @@ const CtaSection = () => {
           </p>
 
           <div className="mt-8 flex flex-col gap-3">
-            <a
+            {/* <a
               href="#book-appointment"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-orange-400"
             >
               <Calendar className="h-4 w-4" />
               Book An Appointment
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </a> */}
             <Link
               to="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-orange-200 bg-white px-7 py-4 text-sm font-semibold text-orange-600 transition-colors hover:bg-orange-50"

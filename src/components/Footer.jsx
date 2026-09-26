@@ -4,8 +4,8 @@ import { MapPin, Phone, Mail } from 'lucide-react';
 import logo from '../assets/logo.jpeg';
 
 const generalLinks = [
-  { label: 'Career', to: '/career' },
-  { label: 'Collaboration', to: '/contact' },
+  // { label: 'Career', to: '/career' },
+  { label: 'Contact Us', to: '/contact' },
   { label: 'Privacy Policy', to: '/privacy' },
   { label: 'Terms & Conditions', to: '/terms' },
 ];

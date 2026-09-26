@@ -1,86 +1,117 @@
 import React from 'react';
 import {
-  MessageSquare,
+  Globe,
+  MonitorPlay,
+  BookOpen,
+  AppWindow,
+  Clapperboard,
+  Bot,
   Sparkles,
-  Zap,
-  Play,
-  Library,
-  Globe2,
-  Glasses,
-  Gamepad2,
+  ArrowUpRight,
 } from 'lucide-react';
 import CTA from '../components/CTA';
 
 const products = [
   {
-    name: 'Consultation & Training',
-    short: 'Consultation',
-    text: 'Unlock the full potential of learning with expert guidance.',
+    name: 'Website Services',
+    short: 'Website Services',
+    text: 'Custom website design and development for brands that need a sharp, modern digital presence.',
     image:
-      'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=900&auto=format&fit=crop',
-    Icon: MessageSquare,
+      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=900&auto=format&fit=crop',
+    Icon: Globe,
+    href: '/contact',
+    cta: 'Get in touch',
+    external: false,
   },
   {
-    name: 'Custom Learning',
-    short: 'Custom',
-    text: 'Tailor-made online experiences for your unique needs.',
-    image:
-      'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=900&auto=format&fit=crop',
-    Icon: Sparkles,
-  },
-  {
-    name: 'Micro-Learning',
-    short: 'Micro',
-    text: 'Bite-sized modules for on-the-go learning.',
-    image:
-      'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=900&auto=format&fit=crop',
-    Icon: Zap,
-  },
-  {
-    name: 'Video Practice',
-    short: 'Video',
-    text: 'Use videos for interactive skill development.',
-    image:
-      'https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=900&auto=format&fit=crop',
-    Icon: Play,
-  },
-  {
-    name: 'Content Libraries',
-    short: 'Libraries',
-    text: 'Access a treasure trove of pre-built courses and modules on diverse topics.',
-    image:
-      'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=900&auto=format&fit=crop',
-    Icon: Library,
-  },
-  {
-    name: 'Content Localization',
-    short: 'Localization',
-    text: 'Reach a global audience by localizing e-learning content through the translation of text, audio, and visuals, all while honoring cultural nuances.',
+    name: 'Athena LMS',
+    short: 'Athena LMS',
+    text: 'AI-powered learning management and experience platform for courses, progress, and training at scale.',
     image:
       'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=900&auto=format&fit=crop',
-    Icon: Globe2,
+    Icon: MonitorPlay,
+    href: 'https://lmsathena.com/',
+    cta: 'Visit Athena LMS',
+    external: true,
   },
   {
-    name: 'VR & AR Simulations',
-    short: 'VR & AR',
-    text: 'Create immersive environments for practical training.',
+    name: 'E-book Athena',
+    short: 'E-book',
+    text: 'Transform PDFs into interactive digital booklets learners can explore on any device.',
     image:
-      'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?q=80&w=900&auto=format&fit=crop',
-    Icon: Glasses,
+      'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=80&w=900&auto=format&fit=crop',
+    Icon: BookOpen,
+    href: 'https://ebook.lmsathena.com/',
+    cta: 'Open E-book Athena',
+    external: true,
   },
   {
-    name: 'Gamification',
-    short: 'Gamification',
-    text: 'Integrate game elements for engagement in learning.',
+    name: 'WebStudio',
+    short: 'WebStudio',
+    text: 'Website builder for creating polished, on-brand sites without a long development cycle.',
     image:
-      'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop',
-    Icon: Gamepad2,
+      'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=900&auto=format&fit=crop',
+    Icon: AppWindow,
+    href: 'https://webstudio.lmsathena.com/',
+    cta: 'Open WebStudio',
+    external: true,
+  },
+  {
+    name: 'Virtual Studio',
+    short: 'Virtual Studio',
+    text: 'Create AI-powered videos that speak your language. Transform text into engaging video content with lifelike AI avatars — professional videos in minutes, not hours.',
+    image:
+      'https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=900&auto=format&fit=crop',
+    Icon: Clapperboard,
+    href: 'https://virtualstudio.lmsathena.com/',
+    cta: 'Open Virtual Studio',
+    external: true,
+  },
+  {
+    name: 'AI Chatbot',
+    short: 'AI Chatbot',
+    text: 'Human-like AI video agents for support — coming soon.',
+    image:
+      'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=900&auto=format&fit=crop',
+    Icon: Bot,
+    href: null,
+    cta: 'Coming soon',
+    external: false,
+  },
+  {
+    name: 'AI Course Creator',
+    short: 'Course Creator',
+    text: 'Design complete, interaction-rich courses in minutes with AI-assisted authoring.',
+    image:
+      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop',
+    Icon: Sparkles,
+    href: 'https://lmsathena.com/signup',
+    cta: 'Start creating',
+    external: true,
   },
 ];
 
 const ProductCard = ({ item, index }) => {
   const Icon = item.Icon;
   const num = String(index + 1).padStart(2, '0');
+  const linkClass =
+    'mt-4 inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold transition-colors';
+
+  const cta = item.href ? (
+    <a
+      href={item.href}
+      target={item.external ? '_blank' : undefined}
+      rel={item.external ? 'noreferrer' : undefined}
+      className={`${linkClass} bg-orange-500 text-white hover:bg-orange-400`}
+    >
+      {item.cta}
+      <ArrowUpRight className="h-3.5 w-3.5" />
+    </a>
+  ) : (
+    <span className={`${linkClass} cursor-default bg-slate-100 text-slate-500 ring-1 ring-slate-200`}>
+      {item.cta}
+    </span>
+  );
 
   return (
     <article className="group relative flex w-[300px] shrink-0 flex-col overflow-hidden rounded-3xl bg-gradient-to-b from-orange-50 to-white ring-1 ring-orange-200/70 sm:w-[320px] lg:w-[340px]">
@@ -101,6 +132,12 @@ const ProductCard = ({ item, index }) => {
           {num}
         </span>
 
+        {!item.href && (
+          <span className="absolute right-4 top-4 rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-bold tracking-wider text-orange-600">
+            Coming soon
+          </span>
+        )}
+
         <div className="absolute -bottom-5 left-1/2 z-10 flex h-11 w-11 -translate-x-1/2 items-center justify-center rounded-full border-2 border-orange-300 bg-orange-50 text-orange-500 transition-transform duration-300 group-hover:scale-110">
           <Icon className="h-5 w-5" />
         </div>
@@ -113,7 +150,7 @@ const ProductCard = ({ item, index }) => {
         <p className="mt-2.5 flex-1 text-left text-sm leading-relaxed text-slate-600">
           {item.text}
         </p>
-        <div className="mt-4 h-1 w-12 self-center rounded-full bg-orange-300/80 transition-all duration-300 group-hover:w-20 group-hover:bg-orange-400" />
+        {cta}
       </div>
     </article>
   );
@@ -124,7 +161,6 @@ const Products = () => {
 
   return (
     <main className="min-h-screen bg-white font-[family-name:var(--font-display)]">
-      {/* Hero */}
       <section className="relative overflow-hidden bg-[#0c1220] pt-28 pb-14 sm:pt-32 sm:pb-16 lg:pb-20">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(249,115,22,0.18),transparent_55%)]"
@@ -138,22 +174,21 @@ const Products = () => {
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-4xl tracking-[-0.03em] text-white sm:text-5xl lg:text-[3.25rem] lg:leading-[1.15]">
-              Innovative Learning{' '}
+              Athena Learning{' '}
               <span className="text-orange-400">Products</span>
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
-              From custom learning and micro-modules to VR simulations and
-              gamification — products built to engage, scale, and deliver results.
+              LMS, e-books, studios, and AI tools — built to create, deliver, and
+              scale learning.
             </p>
             <p className="mt-8 text-xs font-semibold tracking-[0.22em] text-orange-400 uppercase sm:text-[0.7rem]">
-              Design <span className="mx-2 text-orange-400/50">•</span> Content{' '}
-              <span className="mx-2 text-orange-400/50">•</span> Immersion
+              LMS <span className="mx-2 text-orange-400/50">•</span> Studio{' '}
+              <span className="mx-2 text-orange-400/50">•</span> AI
             </p>
           </div>
         </div>
       </section>
 
-      {/* Products marquee */}
       <section className="relative overflow-hidden bg-gradient-to-b from-slate-100 via-orange-50 to-slate-100 py-16 sm:py-20 lg:py-24">
         <div
           className="pointer-events-none absolute left-1/2 top-16 h-64 w-64 -translate-x-1/2 rounded-full bg-orange-200/35 blur-3xl"
@@ -168,10 +203,9 @@ const Products = () => {
             <span className="h-px w-10 bg-orange-400/60" />
           </div>
           <h2 className="text-2xl tracking-tight text-slate-900 sm:text-3xl">
-            Innovative Learning Products
+            Platforms that power modern learning
           </h2>
 
-          {/* All product names — compact */}
           <div className="mt-6 flex flex-nowrap items-center justify-start gap-1 overflow-x-auto pb-1 sm:mt-7 sm:justify-center sm:gap-1.5">
             {products.map((item, index) => {
               const Icon = item.Icon;
