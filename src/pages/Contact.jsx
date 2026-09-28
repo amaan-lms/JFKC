@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Send, ArrowRight } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { MapPin, Phone, Mail, ArrowRight } from 'lucide-react';
 
 const contactDetails = [
   {
@@ -25,46 +25,25 @@ const contactDetails = [
 const MAP_EMBED =
   'https://maps.google.com/maps?q=Omaxe+Square,+Jasola+District+Centre,+New+Delhi-25&z=16&output=embed';
 
+const FORM_ID = 'nIfs5MnI334Oy6we6R4X';
+const FORM_SRC = `https://api.wonderengine.ai/widget/form/${FORM_ID}`;
+
 const Contact = () => {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-  });
-  const [sent, setSent] = useState(false);
+  useEffect(() => {
+    const scriptId = 'wonderengine-form-embed';
+    if (document.getElementById(scriptId)) return undefined;
 
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
+    const script = document.createElement('script');
+    script.id = scriptId;
+    script.src = 'https://api.wonderengine.ai/js/form_embed.js';
+    script.async = true;
+    document.body.appendChild(script);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const body = [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      form.phone ? `Phone: ${form.phone}` : null,
-      '',
-      form.message,
-    ]
-      .filter(Boolean)
-      .join('\n');
-
-    window.location.href = `mailto:info@jfknowledge.com?subject=${encodeURIComponent(
-      form.subject || 'Partnership inquiry'
-    )}&body=${encodeURIComponent(body)}`;
-
-    setSent(true);
-  };
-
-  const fieldClass =
-    'w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20';
+    return undefined;
+  }, []);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-100 via-orange-50 to-slate-50 font-[family-name:var(--font-display)]">
-      {/* Hero */}
       <section className="relative overflow-hidden bg-[#0c1220] pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pb-24">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(249,115,22,0.2),transparent_55%)]"
@@ -90,10 +69,8 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Intro + details + form */}
       <section className="relative py-16 sm:py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
-          {/* Left — copy + contact info */}
           <div className="lg:col-span-5">
             <h2 className="text-2xl tracking-tight text-slate-900 sm:text-3xl">
               Let&apos;s build something together
@@ -130,115 +107,43 @@ const Contact = () => {
             </ul>
           </div>
 
-          {/* Right — form */}
           <div className="lg:col-span-7">
-            <form
-              onSubmit={onSubmit}
-              className="rounded-[2rem] bg-gradient-to-br from-white via-orange-50/60 to-slate-100 p-6 shadow-lg ring-1 ring-orange-100/80 sm:p-8 lg:p-10"
-            >
+            <div className="rounded-[2rem] bg-gradient-to-br from-white via-orange-50/70 to-slate-100 p-5 shadow-lg ring-1 ring-orange-100/80 sm:p-7 lg:p-8">
               <p className="text-xs font-bold tracking-[0.2em] text-orange-500 uppercase">
                 Send a message
               </p>
               <h3 className="mt-2 text-2xl tracking-tight text-slate-900">
                 Tell us about your project
               </h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-500">
+                Share a few details and we&apos;ll get back to you.
+              </p>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                <label className="block sm:col-span-1">
-                  <span className="mb-1.5 block text-sm font-semibold text-slate-700">
-                    Name
-                  </span>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    value={form.name}
-                    onChange={onChange}
-                    placeholder="Your name"
-                    className={fieldClass}
-                  />
-                </label>
-
-                <label className="block sm:col-span-1">
-                  <span className="mb-1.5 block text-sm font-semibold text-slate-700">
-                    Email Address
-                  </span>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    value={form.email}
-                    onChange={onChange}
-                    placeholder="Email"
-                    className={fieldClass}
-                  />
-                </label>
-
-                <label className="block sm:col-span-1">
-                  <span className="mb-1.5 block text-sm font-semibold text-slate-700">
-                    Phone
-                  </span>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={form.phone}
-                    onChange={onChange}
-                    placeholder="Phone"
-                    className={fieldClass}
-                  />
-                </label>
-
-                <label className="block sm:col-span-1">
-                  <span className="mb-1.5 block text-sm font-semibold text-slate-700">
-                    Subject
-                  </span>
-                  <input
-                    type="text"
-                    name="subject"
-                    required
-                    value={form.subject}
-                    onChange={onChange}
-                    placeholder="Subject"
-                    className={fieldClass}
-                  />
-                </label>
-
-                <label className="block sm:col-span-2">
-                  <span className="mb-1.5 block text-sm font-semibold text-slate-700">
-                    Your Message
-                  </span>
-                  <textarea
-                    name="message"
-                    required
-                    rows={5}
-                    value={form.message}
-                    onChange={onChange}
-                    placeholder="Your text here..."
-                    className={`${fieldClass} resize-y min-h-[140px]`}
-                  />
-                </label>
+              <div className="wonderengine-form mt-5 overflow-hidden rounded-2xl bg-white/80 ring-1 ring-orange-100">
+                <iframe
+                  src={FORM_SRC}
+                  id={`inline-${FORM_ID}`}
+                  title="JF Knowledge Centre contact form"
+                  className="block w-full border-0"
+                  style={{ minHeight: 560, height: 560 }}
+                  data-layout="{id:'INLINE'}"
+                  data-trigger-type="alwaysShow"
+                  data-trigger-value=""
+                  data-activation-type="alwaysActivated"
+                  data-activation-value=""
+                  data-deactivation-type="neverDeactivate"
+                  data-deactivation-value=""
+                  data-form-name="Contact"
+                  data-height="560"
+                  data-layout-iframe-id={`inline-${FORM_ID}`}
+                  data-form-id={FORM_ID}
+                />
               </div>
-
-              <button
-                type="submit"
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-orange-500 px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-orange-400 sm:w-auto"
-              >
-                <Send className="h-4 w-4" />
-                Send message
-                <ArrowRight className="h-4 w-4" />
-              </button>
-
-              {sent && (
-                <p className="mt-4 text-sm font-medium text-slate-600">
-                  Opening your email client — we&apos;ll get back to you soon.
-                </p>
-              )}
-            </form>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Map */}
       <section className="relative pb-16 sm:pb-20 lg:pb-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
@@ -261,7 +166,7 @@ const Contact = () => {
             </a>
           </div>
 
-          <div className="overflow-hidden rounded-[2rem] ring-1 ring-slate-200/80 shadow-lg">
+          <div className="overflow-hidden rounded-[2rem] shadow-lg ring-1 ring-slate-200/80">
             <iframe
               title="JF Knowledge Centre — Omaxe Square, Jasola, New Delhi"
               src={MAP_EMBED}
