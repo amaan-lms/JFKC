@@ -6,7 +6,7 @@ import { industries } from '../../data/industries';
 const IndustryCard = ({ industry }) => (
   <Link
     to={`/portfolio/${industry.slug}`}
-    className="group relative flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-orange-100/80 shadow-[0_8px_28px_-12px_rgba(249,115,22,0.25)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_40px_-16px_rgba(249,115,22,0.35)] hover:ring-orange-200"
+    className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-orange-100/80 shadow-[0_8px_28px_-12px_rgba(249,115,22,0.25)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_40px_-16px_rgba(249,115,22,0.35)] hover:ring-orange-200"
   >
     <div className="relative aspect-[5/4] overflow-hidden">
       <img
@@ -44,9 +44,6 @@ const IndustryCard = ({ industry }) => (
 );
 
 const WhatSetsUsApart = () => {
-  const topRow = industries.slice(0, 5);
-  const bottomRow = industries.slice(5, 10);
-
   return (
     <section className="relative overflow-hidden bg-orange-100 py-16 font-[family-name:var(--font-display)] text-gray-800 sm:py-20 lg:py-24">
       <div
@@ -72,17 +69,15 @@ const WhatSetsUsApart = () => {
           </p>
         </div>
 
-        <div className="mt-12 space-y-4 sm:mt-14 sm:space-y-5">
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-5">
-            {topRow.map((industry) => (
-              <IndustryCard key={industry.slug} industry={industry} />
-            ))}
-          </div>
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-5">
-            {bottomRow.map((industry) => (
-              <IndustryCard key={industry.slug} industry={industry} />
-            ))}
-          </div>
+        <div className="mt-12 flex flex-wrap justify-center gap-3 sm:mt-14 sm:gap-4">
+          {industries.map((industry) => (
+            <div
+              key={industry.slug}
+              className="w-[calc((100%-0.75rem)/2)] sm:w-[calc((100%-1rem)/2)] md:w-[calc((100%-2rem)/3)] lg:w-[calc((100%-4rem)/5)]"
+            >
+              <IndustryCard industry={industry} />
+            </div>
+          ))}
         </div>
       </div>
     </section>

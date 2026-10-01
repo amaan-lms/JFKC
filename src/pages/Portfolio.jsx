@@ -27,9 +27,10 @@ const Portfolio = () => {
               <span className="text-orange-400">Across Industries</span>
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
-              Explore JFKC portfolio samples across BFSI, retail, FMCG, e-commerce,
-              logistics, healthcare, aviation, manufacturing, energy, IT, education, and
-              enterprise learning — built for real-world skills and measurable impact.
+              Explore JFKC portfolio samples across BFSI, retail, healthcare, aviation,
+              manufacturing, energy, IT, education, hospitality, telecommunications,
+              government, and enterprise learning — built for real-world skills and
+              measurable impact.
             </p>
             <p className="mt-8 text-xs font-semibold tracking-[0.22em] text-orange-400 uppercase sm:text-[0.7rem]">
               Learning <span className="mx-2 text-orange-400/50">•</span> Industries{' '}

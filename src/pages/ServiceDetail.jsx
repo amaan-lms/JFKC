@@ -1,12 +1,133 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
-import { ArrowLeft, ArrowUpRight, Check } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { getServiceBySlug, services } from '../data/services';
 import CTA from '../components/CTA';
+
+const CapabilityFlow = ({ items }) => {
+  const count = items.length;
+  const width = 1200;
+  const height = 180;
+  const midY = height / 2;
+  const points = items.map((_, index) => ((index + 0.5) / count) * width);
+
+  const curves = points.slice(0, -1).map((start, index) => {
+    const end = points[index + 1];
+    const gap = (end - start) * 0.16;
+    const lift = index % 2 === 0 ? midY - 62 : midY + 62;
+    return `M ${start + gap} ${midY} Q ${(start + end) / 2} ${lift} ${end - gap} ${midY}`;
+  });
+
+  return (
+    <>
+      <ol className="mt-8 space-y-3 lg:hidden">
+        {items.map((item, index) => (
+          <li
+            key={item}
+            className="flex items-start gap-3 rounded-2xl bg-white/90 px-4 py-4 ring-1 ring-orange-200/80"
+          >
+            <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-orange-500 text-xs font-bold text-white">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <span className="text-sm leading-relaxed text-slate-700">{item}</span>
+          </li>
+        ))}
+      </ol>
+
+      <div className="relative mt-6 hidden lg:block">
+        <div
+          className="grid items-end gap-3"
+          style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
+        >
+          {items.map((item, index) => (
+            <p
+              key={item}
+              className={`min-h-[4.5rem] px-2 text-center text-sm leading-snug text-slate-700 ${
+                index % 2 === 0 ? '' : 'invisible'
+              }`}
+            >
+              {item}
+            </p>
+          ))}
+        </div>
+
+        <div className="relative my-1 h-16">
+          <svg
+            viewBox={`0 0 ${width} ${height}`}
+            className="pointer-events-none absolute top-1/2 left-0 h-44 w-full -translate-y-1/2"
+            aria-hidden="true"
+          >
+            <defs>
+              <marker
+                id="capability-arrow"
+                markerWidth="8"
+                markerHeight="8"
+                refX="6"
+                refY="4"
+                orient="auto"
+              >
+                <path d="M0,0 L8,4 L0,8 Z" fill="#f97316" />
+              </marker>
+            </defs>
+            {curves.map((path) => (
+              <path
+                key={path}
+                d={path}
+                fill="none"
+                stroke="#f97316"
+                strokeWidth="3"
+                strokeLinecap="round"
+                markerEnd="url(#capability-arrow)"
+              />
+            ))}
+          </svg>
+          <ol
+            className="relative z-10 grid h-full items-center"
+            style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
+          >
+            {items.map((item, index) => (
+              <li key={item} className="flex justify-center">
+                <span className="relative inline-flex h-12 w-12 items-center justify-center rounded-full bg-orange-500 text-sm font-bold text-white shadow-[0_8px_20px_-8px_rgba(234,88,12,0.8)]">
+                  <span className="pointer-events-none absolute -inset-2.5 rounded-full border border-dashed border-orange-300" />
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div
+          className="grid items-start gap-3"
+          style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
+        >
+          {items.map((item, index) => (
+            <p
+              key={item}
+              className={`min-h-[4.5rem] px-2 text-center text-sm leading-snug text-slate-700 ${
+                index % 2 === 1 ? '' : 'invisible'
+              }`}
+            >
+              {item}
+            </p>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
 
 const ServiceDetail = () => {
   const { slug } = useParams();
   const service = getServiceBySlug(slug);
+
+  useEffect(() => {
+    if (!service) return undefined;
+    const previous = document.title;
+    document.title = service.pageTitle;
+    return () => {
+      document.title = previous;
+    };
+  }, [service]);
 
   if (!service) {
     return <Navigate to="/services" replace />;
@@ -15,286 +136,248 @@ const ServiceDetail = () => {
   const others = services.filter((item) => item.slug !== service.slug);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-100 via-orange-50/40 to-slate-50 font-[family-name:var(--font-display)]">
-      <section className="relative min-h-[58svh] overflow-hidden bg-[#0c1220] pt-28 sm:min-h-[62svh] sm:pt-32">
+    <main className="min-h-screen bg-white font-[family-name:var(--font-display)] text-slate-800">
+      <section className="relative overflow-hidden bg-[#0c1220] pt-28 pb-16 sm:pt-32 sm:pb-20">
         <img
           src={service.image}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover opacity-30"
           aria-hidden="true"
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0c1220] via-[#0c1220]/92 to-[#0c1220]/70" />
         <div
-          className="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-950/75 to-slate-950/45"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(249,115,22,0.22),transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(249,115,22,0.18),transparent_50%)]"
           aria-hidden="true"
         />
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(58svh-7rem)] max-w-7xl flex-col justify-end px-4 pb-12 sm:min-h-[calc(62svh-8rem)] sm:px-6 sm:pb-16 lg:px-8 lg:pb-20">
+        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
           <Link
             to="/services"
-            className="mb-auto inline-flex w-fit items-center gap-2 text-sm font-semibold text-white/80 transition-colors hover:text-orange-300"
+            className="inline-flex items-center gap-2 text-sm font-medium text-white/70 transition-colors hover:text-orange-300"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Services
+            All services
           </Link>
 
-          <div className="mt-10 max-w-3xl">
-            <h1 className="text-4xl tracking-[-0.03em] text-white sm:text-5xl lg:text-[3.35rem] lg:leading-[1.12]">
-              {service.name}
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
-              {service.text}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+          <p className="mt-10 text-xs font-semibold tracking-[0.22em] text-orange-400 uppercase">
+            {service.name}
+          </p>
+          <h1 className="mt-4 max-w-4xl text-4xl tracking-[-0.03em] text-white sm:text-5xl lg:text-[3.25rem] lg:leading-[1.12]">
+            {service.headline}
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
+            {service.lead}
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {service.ctas.map((label, index) => (
               <Link
+                key={label}
                 to="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-400"
+                className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-colors ${
+                  index === 0
+                    ? 'bg-orange-500 text-white hover:bg-orange-400'
+                    : 'text-white ring-1 ring-white/25 hover:bg-white/10'
+                }`}
               >
-                Talk to us
+                {label}
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
-              {/* <a
-                href="#overview"
-                className="inline-flex items-center gap-2 rounded-full bg-white/10 px-6 py-3 text-sm font-semibold text-white ring-1 ring-white/20 transition-colors hover:bg-white/15"
-              >
-                Read the brief
-              </a> */}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="overview"
-        className="relative scroll-mt-24 overflow-hidden bg-gradient-to-b from-orange-50 via-white to-orange-50/70 py-14 sm:py-16 lg:py-20"
-      >
-        <div
-          className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-orange-200/50 blur-[90px]"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute -right-16 bottom-0 h-80 w-80 rounded-full bg-orange-100/80 blur-[100px]"
-          aria-hidden="true"
-        />
-
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-14 lg:px-8">
-          <div className="relative overflow-hidden rounded-[1.5rem] lg:col-span-5">
-            <img
-              src={service.image}
-              alt={service.name}
-              className="aspect-[4/3] w-full object-cover lg:aspect-[5/4]"
-            />
-            <div
-              className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent"
-              aria-hidden="true"
-            />
-            <span className="absolute bottom-4 left-4 rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-bold tracking-[0.16em] text-orange-500 uppercase">
-              Overview
-            </span>
-          </div>
-
-          <div className="lg:col-span-7">
-            <h2 className="text-2xl tracking-tight text-slate-900 sm:text-3xl lg:text-[2.1rem] lg:leading-snug">
-              How JFKC delivers{' '}
-              <span className="text-orange-500">{service.short}</span>
-            </h2>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600">
-              {service.overview[0]}
-            </p>
-            <ul className="mt-6 flex flex-wrap gap-2.5">
-              {service.outcomes.map((item) => (
-                <li
-                  key={item}
-                  className="inline-flex items-center gap-2 rounded-full bg-orange-50 px-3.5 py-2 text-xs font-semibold text-slate-700 ring-1 ring-orange-100"
-                >
-                  <Check className="h-3.5 w-3.5 text-orange-500" strokeWidth={3} />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="relative z-10 mx-auto mt-12 max-w-7xl px-4 sm:mt-16 sm:px-6 lg:px-8">
-          <div className="overflow-hidden rounded-[2rem] bg-white/70 p-6 shadow-[0_24px_60px_-36px_rgba(234,88,12,0.4)] ring-1 ring-orange-100 sm:p-8 lg:p-10">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <div className="mb-3 flex items-center gap-3">
-                  <span className="h-px w-10 bg-orange-400/70" />
-                  <p className="text-xs font-bold tracking-[0.2em] text-orange-500 uppercase">
-                    What you get
-                  </p>
-                </div>
-                <h2 className="max-w-xl text-2xl tracking-tight text-slate-900 sm:text-3xl">
-                  The work inside this service
-                </h2>
-              </div>
-              <p className="max-w-sm text-sm leading-relaxed text-slate-500">
-                Four pieces we actually deliver — not a menu of extras.
-              </p>
-            </div>
-
-            <div className="relative mt-8 grid gap-4 lg:grid-cols-4 lg:gap-0">
-              <span
-                className="pointer-events-none absolute top-[2.15rem] right-8 left-8 hidden h-px bg-orange-200 lg:block"
-                aria-hidden="true"
-              />
-              {service.offerings.map((item, index) => (
-                <article
-                  key={item}
-                  className={`group relative rounded-[1.5rem] p-5 transition-all duration-300 sm:p-6 lg:rounded-none lg:px-5 lg:py-2 lg:first:pl-0 lg:last:pr-0 ${
-                    index === 0
-                      ? 'bg-orange-500 text-white shadow-[0_16px_40px_-18px_rgba(234,88,12,0.7)] lg:rounded-[1.5rem] lg:px-6 lg:py-7'
-                      : 'bg-orange-50/80 ring-1 ring-orange-100 hover:-translate-y-1 hover:bg-white lg:bg-transparent lg:ring-0 lg:hover:translate-y-0 lg:hover:bg-transparent'
-                  }`}
-                >
-                  <span
-                    className={`relative z-10 mb-5 flex h-11 w-11 items-center justify-center rounded-full text-sm font-bold ${
-                      index === 0
-                        ? 'bg-white text-orange-500'
-                        : 'bg-orange-500 text-white lg:shadow-[0_0_0_6px_rgba(255,247,237,0.95)]'
-                    }`}
-                  >
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <p
-                    className={`text-sm leading-relaxed sm:text-[0.95rem] ${
-                      index === 0 ? 'text-white/90' : 'text-slate-600'
-                    }`}
-                  >
-                    {item}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-[#0c1220] py-14 sm:py-16 lg:py-20">
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(249,115,22,0.16),transparent_50%)]"
-          aria-hidden="true"
-        />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-bold tracking-[0.2em] text-orange-400 uppercase">
-            How we work
-          </p>
-          <h2 className="mt-3 max-w-xl text-2xl tracking-tight text-white sm:text-3xl">
-            A short path from brief to live
-          </h2>
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {service.process.map((step, index) => (
-              <article
-                key={step.title}
-                className="rounded-[1.5rem] bg-white/5 p-6 ring-1 ring-white/10"
-              >
-                <p className="text-xs font-bold tracking-[0.18em] text-orange-400 uppercase">
-                  Step {String(index + 1).padStart(2, '0')}
-                </p>
-                <h3 className="mt-3 text-xl text-white">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/65">
-                  {step.body}
-                </p>
-              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="relative py-14 sm:py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="overflow-hidden rounded-[2rem] bg-white p-7 ring-1 ring-slate-200 sm:p-10">
-            <p className="text-xs font-bold tracking-[0.2em] text-orange-500 uppercase">
-              What changes
-            </p>
-            <h2 className="mt-3 text-2xl tracking-tight text-slate-900 sm:text-3xl">
-              Outcomes you can hold the work to
-            </h2>
-            <ul className="mt-8 grid gap-4 sm:grid-cols-3">
-              {service.outcomes.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-3 rounded-2xl bg-slate-50 px-4 py-4 ring-1 ring-slate-100"
-                >
-                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-500 text-white">
-                    <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                  </span>
-                  <span className="text-sm font-medium leading-snug text-slate-700">
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              to="/contact"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
-            >
-              Start this service
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
+      <section className="bg-gradient-to-b from-white via-orange-50/40 to-white">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
+          <div className="grid overflow-hidden rounded-[1.75rem] bg-white shadow-[0_24px_60px_-36px_rgba(234,88,12,0.45)] ring-1 ring-orange-100 lg:grid-cols-2">
+            <div className="flex flex-col justify-center px-6 py-8 sm:px-10 sm:py-12 lg:px-12">
+              <div className="mb-5 flex items-center gap-3">
+                <span className="h-px w-8 bg-orange-400" />
+                <p className="text-xs font-semibold tracking-[0.2em] text-orange-500 uppercase">
+                  Overview
+                </p>
+              </div>
+              <div className="space-y-5">
+                {service.intro.map((paragraph, index) => (
+                  <p
+                    key={paragraph.slice(0, 48)}
+                    className={
+                      index === 0
+                        ? 'text-lg leading-relaxed text-slate-800 sm:text-xl sm:leading-relaxed'
+                        : 'text-base leading-relaxed text-slate-600'
+                    }
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </div>
+            <div className="relative min-h-[260px] sm:min-h-[320px]">
+              <img
+                src={service.image}
+                alt={service.name}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-t border-slate-100 bg-slate-50 py-14 sm:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <section className="relative overflow-hidden bg-gradient-to-b from-orange-50 via-orange-100/80 to-orange-50">
+        <div
+          className="pointer-events-none absolute -left-16 top-10 h-56 w-56 rounded-full bg-orange-200/70 blur-3xl"
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute -right-10 bottom-6 h-64 w-64 rounded-full bg-amber-100 blur-3xl"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
+          <p className="text-xs font-semibold tracking-[0.2em] text-orange-500 uppercase">
+            Key capabilities
+          </p>
+          <h2 className="mt-3 max-w-xl text-2xl tracking-tight text-slate-900 sm:text-3xl">
+            What this service covers
+          </h2>
+          <CapabilityFlow items={service.highlights} />
+        </div>
+      </section>
+
+      <section>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+          {service.blocks.map((block) => {
+            const highlighted = /team/i.test(block.title);
+
+            if (highlighted) {
+              return (
+                <div
+                  key={block.title}
+                  className="my-10 rounded-[1.75rem] bg-gradient-to-br from-orange-500 via-orange-500 to-orange-400 px-6 py-8 text-white sm:px-8 sm:py-10"
+                >
+                  <h2 className="text-2xl tracking-tight sm:text-3xl">{block.title}</h2>
+                  <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                    {block.items.map((item, index) => (
+                      <li
+                        key={item}
+                        className="rounded-2xl bg-white px-4 py-5 text-slate-900 shadow-[0_12px_30px_-18px_rgba(124,45,18,0.45)]"
+                      >
+                        <span className="text-sm font-semibold tabular-nums text-orange-500">
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                        <p className="mt-2 text-sm font-semibold leading-snug">{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            }
+
+            return (
+              <div
+                key={block.title}
+                className="grid gap-6 border-b border-slate-200 py-12 sm:py-14 lg:grid-cols-12 lg:gap-12"
+              >
+                <h2 className="text-xl tracking-tight text-slate-900 sm:text-2xl lg:col-span-4">
+                  {block.title}
+                </h2>
+                <ul className="grid gap-3 sm:grid-cols-2 lg:col-span-8">
+                  {block.items.map((item) => (
+                    <li
+                      key={item}
+                      className="border-l-2 border-orange-400 pl-4 text-sm leading-relaxed text-slate-600"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="bg-[#0c1220]">
+          <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-16 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10 lg:py-20">
+          <p className="max-w-xl text-3xl tracking-tight text-white sm:text-4xl sm:leading-tight">
+            {service.closing}
+          </p>
+          <div className="flex shrink-0 flex-wrap gap-3">
+            {service.ctas.map((label, index) => (
+              <Link
+                key={label}
+                to="/contact"
+                className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-colors ${
+                  index === 0
+                    ? 'bg-orange-500 text-white hover:bg-orange-400'
+                    : 'text-white ring-1 ring-white/25 hover:bg-white/10'
+                }`}
+              >
+                {label}
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10">
+          <div className="flex items-end justify-between gap-4">
             <div>
-              <p className="text-xs font-bold tracking-[0.2em] text-orange-500 uppercase">
+              <p className="text-xs font-semibold tracking-[0.2em] text-orange-500 uppercase">
                 More services
               </p>
-              <h2 className="mt-2 text-2xl tracking-tight text-slate-900 sm:text-3xl">
-                Explore other offerings
+              <h2 className="mt-2 text-2xl tracking-tight text-slate-900">
+                Other ways we can help
               </h2>
             </div>
             <Link
               to="/services"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-orange-500 transition-colors hover:text-orange-600"
+              className="hidden items-center gap-1.5 text-sm font-semibold text-orange-500 hover:text-orange-600 sm:inline-flex"
             >
-              View all services
+              View all
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
-
-        <div className="industry-marquee relative w-full overflow-hidden">
-          <div className="industry-marquee__track flex gap-4 px-4 sm:gap-5 sm:px-6">
-            {[...others, ...others].map((item, index) => (
-              <Link
-                key={`${item.slug}-${index}`}
-                to={`/services/${item.slug}`}
-                className="group w-[240px] shrink-0 overflow-hidden rounded-2xl bg-white shadow-[0_10px_30px_-16px_rgba(15,23,42,0.2)] ring-1 ring-slate-200/80 transition-all duration-300 hover:-translate-y-1 hover:ring-orange-200 sm:w-[270px]"
-              >
-                <div className="aspect-[16/10] overflow-hidden">
+        <div className="industry-marquee relative mt-8 w-full overflow-hidden pb-16">
+          <div className="industry-marquee__track flex gap-5 px-4 sm:px-6">
+            {[...others, ...others].map((item, index) => {
+              const ItemIcon = item.Icon;
+              return (
+                <Link
+                  key={`${item.slug}-${index}`}
+                  to={`/services/${item.slug}`}
+                  className="group relative h-[250px] w-[280px] shrink-0 overflow-hidden rounded-[1.4rem] ring-1 ring-orange-200/70 sm:w-[320px]"
+                >
                   <img
                     src={item.image}
-                    alt={item.name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                </div>
-                <div className="px-4 py-4">
-                  <p className="text-sm font-semibold text-slate-900 transition-colors group-hover:text-orange-500">
-                    {item.name}
-                  </p>
-                  <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-slate-500">
-                    {item.text}
-                  </p>
-                </div>
-              </Link>
-            ))}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-slate-950/10" />
+                  <div className="relative flex h-full flex-col justify-end p-5">
+                    <span className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-orange-500 text-white">
+                      <ItemIcon className="h-4 w-4" />
+                    </span>
+                    <p className="text-base font-semibold leading-snug text-white">
+                      {item.name}
+                    </p>
+                    <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-white/75">
+                      {item.text}
+                    </p>
+                    <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-orange-300">
+                      View service
+                      <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <CTA />
     </main>
   );
 };

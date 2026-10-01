@@ -162,7 +162,7 @@ const Services = () => {
               <Link
                 key={item.slug}
                 to={`/services/${item.slug}`}
-                className={`min-w-[calc(50%-0.25rem)] flex-1 rounded-2xl px-2 py-3 text-center transition-all duration-300 sm:min-w-[calc(33.333%-0.5rem)] lg:min-w-[calc(20%-0.6rem)] ${
+                className={`min-w-[calc(50%-0.25rem)] flex-1 rounded-2xl px-2 py-3 text-center transition-all duration-300 sm:min-w-[calc(33.333%-0.5rem)] lg:min-w-[calc((100%-4.5rem)/7)] ${
                   index === active
                     ? 'bg-orange-500 text-white'
                     : 'bg-white text-slate-500 ring-1 ring-slate-200 hover:text-orange-500'

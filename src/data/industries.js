@@ -65,7 +65,7 @@ export const industries = [
   },
   {
     slug: 'oil-gas',
-    name: 'Oil & Gas',
+    name: 'Oil & Gas / Energy',
     short: 'Field-ready training for energy and operations crews.',
     text: 'We prioritize Safety, Compliance, Technical, and Emergency Response training with modules on drilling, rig safety, hazardous materials, and environmental regulations—customized for upstream, midstream, and downstream operations, featuring interactive emergency simulations.',
     image:
@@ -89,6 +89,33 @@ export const industries = [
     image:
       'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=900&auto=format&fit=crop',
     videoId: '1E-kk6SIpKywtr3abjzOgK9W4lx6b_n6V',
+  },
+  {
+    slug: 'hospitality-tourism',
+    name: 'Hospitality & Tourism',
+    short: 'Guest-ready training for hotels, travel, and frontline teams.',
+    text: 'JFKC builds learning for hospitality and tourism covering guest experience, service standards, reservations, safety, and destination knowledge—so hotels, travel brands, and frontline teams deliver a consistent stay and journey.',
+    image:
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=900&auto=format&fit=crop',
+    videoId: '1WR6PM4NNGlcevS6wZuUgMwGHqGPPWaJw',
+  },
+  {
+    slug: 'telecommunications',
+    name: 'Telecommunications',
+    short: 'Product and service training for network and customer teams.',
+    text: 'For telecommunications partners, JFKC designs modules on products, network basics, customer support, sales, and compliance—helping retail, contact-centre, and field teams explain services clearly and resolve issues faster.',
+    image:
+      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=900&auto=format&fit=crop',
+    videoId: '1evcGAPhBCgYIx0N6o3AoIxUgilX9dheT',
+  },
+  {
+    slug: 'government-public-sector',
+    name: 'Government & Public Sector',
+    short: 'Clear, compliant learning for public services and agencies.',
+    text: 'JFKC supports government and public-sector teams with training on policy, citizen service, compliance, and role-based skills—structured for large rollouts, clear language, and consistent delivery across departments.',
+    image:
+      'https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?q=80&w=900&auto=format&fit=crop',
+    videoId: '1cIaHztrtiV7BT_ch4XGYM0CsV2_QwAbr',
   },
 ];
 
