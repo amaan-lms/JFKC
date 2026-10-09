@@ -26,17 +26,7 @@ const products = [
     cta: 'Visit Athena LMS',
     external: true,
   },
-  {
-    name: 'AI Course Creator',
-    short: 'AI Course Creator',
-    text: 'Design complete, interaction-rich courses in minutes with AI-assisted authoring.',
-    image:
-      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop',
-    Icon: Sparkles,
-    href: 'https://lmsathena.com/signup',
-    cta: 'Start creating',
-    external: true,
-  },
+ 
   {
     name: 'AI ebook Athena',
     short: 'AI ebook Athena',
@@ -76,6 +66,17 @@ const products = [
     href: null,
     cta: 'Coming soon',
     external: false,
+  },
+  {
+    name: 'AI Course Creator',
+    short: 'AI Course Creator',
+    text: 'Design complete, interaction-rich courses in minutes with AI-assisted authoring.',
+    image:
+      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop',
+    Icon: Sparkles,
+    href: 'https://lmsathena.com/signup',
+    cta: 'Start creating',
+    external: true,
   },
 ];
 
