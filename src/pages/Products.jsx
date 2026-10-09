@@ -9,7 +9,7 @@ import {
   ArrowUpRight,
 } from 'lucide-react';
 import CTA from '../components/CTA';
-import athenaLmsImage from '../assets/athen_lms.png';
+import athenaLmsImage from '../assets/athena_dash.png';
 import ebookImage from '../assets/ebook.png';
 import webstudioImage from '../assets/webstudio.png';
 import virtualStudioImage from '../assets/vi.png';
